@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sora: "Sora", sans-serif;
+
+  /* modules cards ui styles */
+  --color-mc-accent: #FF8623;
+  --color-mc-outlined-select-borders: #0000003B;
+  --color-mc-outlined-borders: #E0E0E0;
+  --color-mc-text: #00000099;
+
+  /* plan selection ui styles */
+  --color-ps-accent: #FF8623;
+  --color-ps-outlined-borders: #E0E0E0;
+  --color-ps-text: #00000099;
+  --color-ps-text-disabled: #0000004D;
+  --color-ps-badge-text: #FFFFFF;
+  --color-ps-badge-background: #FF8623;
+}
+
+/* extreme shadow test */
+.tip-badge {
+  box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.12), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 3px 5px -1px rgba(0, 0, 0, 0.20);
+}
