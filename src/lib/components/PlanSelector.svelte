@@ -20,7 +20,7 @@
 </script>
 
 <div class="mb-16">
-  <h2 class="text-xl font-semibold mb-5">
+  <h2 class="text-xl font-semibold mb-3">
     Escoge el plan que mas <span class="text-ps-accent">adapte</span> a tu empresa
   </h2>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

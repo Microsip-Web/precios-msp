@@ -236,25 +236,23 @@
       <!-- Only render if this module's data has been initialized -->
       {#if selectedModules[module.name]}
         <div
-          class="module-card mb-4 border rounded-lg p-2 md:p-4"
+          class="module-card mb-4 border rounded-lg p-2 md:p-4 cursor-pointer"
           class:border-mc-accent={selectedModules[module.name].selected}
           class:border-mc-outlined-borders={!selectedModules[module.name]
             .selected}
+          onclick={() => toggleModule(module.name)}
+          onkeydown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              toggleModule(module.name);
+            }
+          }}
+          tabindex="0"
+          role="button"
+          aria-pressed={selectedModules[module.name].selected}
         >
           <div class="col-one flex flex-col gap-4">
             <div class="name-image flex items-center justify-between">
-              <div
-                class="col-one flex items-center cursor-pointer"
-                onclick={() => toggleModule(module.name)}
-                onkeydown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    toggleModule(module.name);
-                  }
-                }}
-                tabindex="0"
-                role="button"
-                aria-pressed={selectedModules[module.name].selected}
-              >
+              <div class="col-one flex items-center">
                 <div class="module-toggle hidden">
                   <input
                     class="hidden"
@@ -303,19 +301,19 @@
                     onclick={(e) => e.stopPropagation()}
                   >
                     {#if !isNaN(module.basic)}
-                      <option value="basic">Básico (1 usuario)</option>
+                      <option value="basic">Básico</option>
                     {/if}
                     {#if !isNaN(module.light)}
-                      <option value="light">Ligero (2 usuarios)</option>
+                      <option value="light">Ligero</option>
                     {/if}
                     {#if !isNaN(module.pro)}
-                      <option value="pro">Pro (3 usuarios)</option>
+                      <option value="pro">Pro</option>
                     {/if}
                     {#if !isNaN(module.premium)}
-                      <option value="premium">Premium (5 usuarios)</option>
+                      <option value="premium">Premium</option>
                     {/if}
                     {#if !isNaN(module.corporate)}
-                      <option value="corporate">Corporativo (10 o más usuarios)</option>
+                      <option value="corporate">Corporativo</option>
                     {/if}
                   </select>
                 </div>
@@ -497,10 +495,10 @@
   <div
     class="total-price p-4 text-sm md:text-base text-sm-text rounded-lg mb-4 bg-sm-background"
   >
-    <div class="payment-frequency mb-4 grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4 items-center">
-      <h3 class="text-sm md:text-base font-semibold">Frecuencia de pago:</h3>
+    <div class="payment-frequency mb-4">
+      <h3 class="text-sm md:text-base mb-2">Frecuencia de pago</h3>
       <div class="frequency-select">
-        <div class="border-l border-sm-divider pl-2 md:pl-0 md:border-none md:justify-self-end">
+        <div class="flex gap-4">
           <select
             class="w-min text-sm md:text-base rounded-lg border border-mc-outlined-borders p-2"
             bind:value={paymentFrequency}
@@ -557,7 +555,7 @@
       {/if}
 
       <div
-        class="flex justify-between items-center font-semibold border-t border-sm-divider mt-2 pt-2"
+        class="flex justify-between items-center font-semibold border-t mt-2 pt-2"
       >
         <span>Total Mensual:</span>
         <span>${pricingDetails.monthlyTotal.toLocaleString("es-MX")}</span>
@@ -575,7 +573,7 @@
       {/if}
 
       <div
-        class="flex justify-between items-center font-bold pt-2 border-t border-sm-divider mt-2"
+        class="flex justify-between items-center font-bold pt-2 border-t mt-2"
       >
         <span
           >Total {paymentFrequency === "monthly"
@@ -586,12 +584,6 @@
         >
         <span>${pricingDetails.total.toLocaleString("es-MX")}</span>
       </div>
-    </div>
-
-    <div class="smalls mt-6">
-      <small class="text-xs text-gray-500">
-        Este total es una estimación de precio en un solo PDA, no incluye costos de instalación, ni PDA. Precios en Pesos Mexicanos.
-      </small>
     </div>
   </div>
 {/snippet}

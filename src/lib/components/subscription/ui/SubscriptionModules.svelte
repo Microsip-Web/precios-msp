@@ -3,8 +3,8 @@
 </script>
 
 <section>
-  <h2 class="text-xl font-semibold mb-5">
-    Módulos
+  <h2 class="text-xl font-semibold mb-3 text-sm-text-black">
+    Módulos en suscripción
   </h2>
   <ModulesCards />
 </section>

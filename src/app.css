@@ -17,6 +17,20 @@
   --color-ps-text-disabled: #0000004D;
   --color-ps-badge-text: #FFFFFF;
   --color-ps-badge-background: #FF8623;
+  --color-ps-text-black: #000000DE;
+
+  /* plan summary ui styles */
+  --color-sm-background: #FAFAFC;
+  --color-sm-text: #00000099;
+  --color-sm-accent: #FF8623;
+  --color-sm-outlined-borders: #E0E0E0;
+  --color-sm-divider: #0000001F;
+  --color-sm-text-black: #000000DE;
+
+  /* global headers */
+  --color-gh-text: #00000099;
+  --color-gh-text-accent: #FF8623;
+  --color-gh-text-black: #000000DE;
 }
 
 /* extreme shadow test */
