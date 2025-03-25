@@ -1,7 +1,7 @@
 <script lang="ts">
   // prices to be used in the module card
   import { subscriptionModulesAndPrices } from "../../../prices/subscription/prices";
-
+  import Summary from "./Summary.svelte";
   // track the selected modules and their configuration
   let selectedModules = $state<
     Record<
@@ -227,6 +227,44 @@
 
     return addons;
   }
+
+  function resetEverything() {
+    // alert to confirm
+    if (confirm("¿Estás seguro de querer reiniciar la cotización?")) {
+      // Reset all modules
+      Object.keys(selectedModules).forEach((moduleName) => {
+        selectedModules[moduleName] = {
+        ...selectedModules[moduleName],
+        selected: false,
+        users: 10,
+        // Reset to the initial plan
+        plan: checkIfPlanIsNaN(
+          subscriptionModulesAndPrices.find(m => m.name === moduleName)!,
+          "basic"
+        )
+      };
+    });
+
+    // Reset all addons
+    Object.keys(selectedAddons).forEach((addonName) => {
+      selectedAddons[addonName] = {
+        ...selectedAddons[addonName],
+        selected: false,
+        sucursales: addonName === "SICS" ? 1 : undefined,
+        credencial: addonName === "Movimientos Bancarios" ? 1 : undefined
+      };
+    });
+
+    // Reset payment frequency to monthly
+    paymentFrequency = "monthly";
+
+    // scroll to top
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  }
 </script>
 
 <section class="font-sora text-mc-text">
@@ -236,7 +274,7 @@
       <!-- Only render if this module's data has been initialized -->
       {#if selectedModules[module.name]}
         <div
-          class="module-card mb-4 border rounded-lg p-2 md:p-4"
+          class="module-card mb-4 border rounded-xl p-2 md:p-4"
           class:border-mc-accent={selectedModules[module.name].selected}
           class:border-mc-outlined-borders={!selectedModules[module.name]
             .selected}
@@ -263,7 +301,7 @@
                   />
                 </div>
                 <div
-                  class="img w-10 h-10 rounded-lg border border-mc-outlined-borders mr-2"
+                  class="img w-10 h-10 rounded-xl border border-mc-outlined-borders mr-2"
                 >
                   <img
                     class="w-full h-full object-cover"
@@ -298,7 +336,7 @@
                 <div class="select-plan">
                   <label for="plan" class="text-sm md:text-base">Plan</label>
                   <select
-                    class="w-min text-sm md:text-base rounded-lg border border-mc-outlined-borders p-2"
+                    class="w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
                     bind:value={selectedModules[module.name].plan}
                     onclick={(e) => e.stopPropagation()}
                   >
@@ -328,7 +366,7 @@
                     </label>
                     <select
                       id="users"
-                      class="w-min text-sm md:text-base rounded-lg border border-mc-outlined-borders p-2"
+                      class="w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
                       bind:value={selectedModules[module.name].users}
                       onclick={(e) => e.stopPropagation()}
                     >
@@ -351,12 +389,12 @@
                 <div
                   class="addons mt-4 pl-2 border-l border-mc-outlined-borders"
                 >
-                  <h3 class="text-sm md:text-base mb-3">Complementos</h3>
+                  <h3 class="text-sm md:text-base mb-2 font-medium">Complementos</h3>
 
                   {#each module.addon as addon}
                     {#if selectedAddons[addon.name]}
                       <div
-                        class="text-sm addon-card mb-3 p-2 border rounded-lg cursor-pointer"
+                        class="text-sm addon-card mb-3 p-2 border rounded-xl cursor-pointer"
                         class:border-mc-accent={selectedAddons[addon.name]
                           .selected}
                         class:border-mc-outlined-borders={!selectedAddons[
@@ -390,7 +428,7 @@
                             </div>
                             <div class="img mr-2">
                               <img
-                                class="w-8 h-8 object-cover"
+                                class="w-8 h-8 object-cover rounded-xl border border-mc-outlined-borders"
                                 src={addon.img}
                                 alt={addon.name}
                               />
@@ -424,9 +462,9 @@
 
                         <!-- Only show additional options when addon is selected -->
                         {#if selectedAddons[addon.name].selected}
-                          <div class="addon-options pl-11">
+                          <div class="addon-options">
                             {#if addon.name === "SICS"}
-                              <div class="sucursales-input flex items-center">
+                              <div class="sucursales-input flex items-center mt-2">
                                 <label for="sucursales" class="mr-2 text-sm"
                                   >Sucursales:</label
                                 >
@@ -434,7 +472,7 @@
                                   id="sucursales"
                                   type="number"
                                   min="1"
-                                  class="w-20 rounded-lg border border-mc-outlined-borders p-1 text-sm"
+                                  class="w-20 rounded-xl border border-mc-outlined-borders p-1 text-sm"
                                   bind:value={
                                     selectedAddons[addon.name].sucursales
                                   }
@@ -450,7 +488,7 @@
                                 />
                               </div>
                             {:else if addon.name === "Movimientos Bancarios"}
-                              <div class="credencial-input flex items-center">
+                              <div class="credencial-input flex items-center mt-2">
                                 <label for="credencial" class="mr-2 text-sm"
                                   >Credenciales:</label
                                 >
@@ -458,7 +496,7 @@
                                   id="credencial"
                                   type="number"
                                   min="1"
-                                  class="w-20 rounded-lg border border-mc-outlined-borders p-1 text-sm"
+                                  class="w-20 rounded-xl border border-mc-outlined-borders p-1 text-sm"
                                   bind:value={
                                     selectedAddons[addon.name].credencial
                                   }
@@ -490,108 +528,12 @@
     <div>Ha habido un error al cargar los módulos, recarga la página</div>
   {/if}
 
-  {@render summary()}
+  <!-- {@render summary()} -->
+  <Summary
+    pricingDetails={pricingDetails}
+    bind:paymentFrequency={paymentFrequency}
+    resetEverything={resetEverything}
+  />
 </section>
 
-{#snippet summary()}
-  <div
-    class="total-price p-4 text-sm md:text-base text-sm-text rounded-lg mb-4 bg-sm-background"
-  >
-    <div class="payment-frequency mb-4 grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4 items-center">
-      <h3 class="text-sm md:text-base font-semibold">Frecuencia de pago:</h3>
-      <div class="frequency-select">
-        <div class="border-l border-sm-divider pl-2 md:pl-0 md:border-none md:justify-self-end">
-          <select
-            class="w-min text-sm md:text-base rounded-lg border border-mc-outlined-borders p-2"
-            bind:value={paymentFrequency}
-          >
-            <option value="monthly">Mensual</option>
-            <option value="semester">Semestral (5% descuento)</option>
-            <option value="annual">Anual (10% descuento)</option>
-          </select>
-        </div>
-      </div>
-    </div>
 
-    <div class="price-breakdown">
-      <div class="flex justify-between items-center mb-1">
-        <span>Subtotal Módulos:</span>
-        <span>${pricingDetails.modulesTotal.toLocaleString("es-MX")}</span>
-      </div>
-
-      {#if pricingDetails.volumeDiscountRate > 0}
-        <div class="flex justify-between items-center mb-1 text-green-600">
-          <span
-            >Descuento por Volumen ({(
-              pricingDetails.volumeDiscountRate * 100
-            ).toFixed(0)}%):</span
-          >
-          <span
-            >-${pricingDetails.volumeDiscountAmount.toLocaleString(
-              "es-MX"
-            )}</span
-          >
-        </div>
-      {/if}
-
-      <div class="flex justify-between items-center mb-1">
-        <span>Subtotal Complementos:</span>
-        <span>${pricingDetails.addonsTotal.toLocaleString("es-MX")}</span>
-      </div>
-
-      {#if pricingDetails.paymentFrequencyDiscountRate > 0}
-        <div class="flex justify-between items-center mb-1 text-green-600">
-          <span
-            >Descuento por Pago {paymentFrequency === "semester"
-              ? "Semestral"
-              : "Anual"} ({(
-              pricingDetails.paymentFrequencyDiscountRate * 100
-            ).toFixed(0)}%):</span
-          >
-          <span
-            >-${pricingDetails.paymentFrequencyDiscountAmount.toLocaleString(
-              "es-MX"
-            )}</span
-          >
-        </div>
-      {/if}
-
-      <div
-        class="flex justify-between items-center font-semibold border-t border-sm-divider mt-2 pt-2"
-      >
-        <span>Total Mensual:</span>
-        <span>${pricingDetails.monthlyTotal.toLocaleString("es-MX")}</span>
-      </div>
-
-      {#if paymentFrequency !== "monthly"}
-        <div
-          class="flex justify-between items-center text-sm text-gray-600 mb-2"
-        >
-          <span>
-            {paymentFrequency === "semester" ? "6 meses" : "12 meses"}
-          </span>
-          <span>x {pricingDetails.paymentFrequencyMultiplier}</span>
-        </div>
-      {/if}
-
-      <div
-        class="flex justify-between items-center font-bold pt-2 border-t border-sm-divider mt-2"
-      >
-        <span
-          >Total {paymentFrequency === "monthly"
-            ? "Mensual"
-            : paymentFrequency === "semester"
-              ? "Semestral"
-              : "Anual"}:</span
-        >
-        <span>${pricingDetails.total.toLocaleString("es-MX")}</span>
-      </div>
-    </div>
-
-    <div class="smalls mt-6">
-      <small class="text-xs text-gray-500">
-        Este total es una estimación de precio en un solo PDA, no incluye costos de instalación, ni PDA. Precios en Pesos Mexicanos.
-      </small>
-    </div>
-  </div>
-{/snippet}

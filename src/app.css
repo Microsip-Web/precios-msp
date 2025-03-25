@@ -26,7 +26,9 @@
   --color-sm-outlined-borders: #E0E0E0;
   --color-sm-divider: #0000001F;
   --color-sm-text-black: #000000DE;
-
+  --color-sm-button-primary: #FF8623;
+  --color-sm-button-secondary: #636668;
+  --color-sm-button-secondary-hover: #2024270A;
   /* global headers */
   --color-gh-text: #00000099;
   --color-gh-text-accent: #FF8623;
@@ -36,4 +38,8 @@
 /* extreme shadow test */
 .tip-badge {
   box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.12), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 3px 5px -1px rgba(0, 0, 0, 0.20);
+}
+
+.sm-button-secondary-hover {
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.20);
 }

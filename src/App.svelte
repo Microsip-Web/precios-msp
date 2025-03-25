@@ -1,6 +1,7 @@
 <script lang="ts">
   import PlanSelector from "./lib/components/PlanSelector.svelte";
   import SubscriptionModules from "./lib/components/subscription/ui/SubscriptionModules.svelte";
+  import TraditionalModules from "./lib/components/traditional/ui/TraditionalModules.svelte";
   import { onMount } from "svelte";
 
   let activeView: "traditional" | "subscription" = "subscription";
@@ -36,7 +37,15 @@
     </p>
   </div>
 
-  <SubscriptionModules />
+  {#if activeView === "subscription"}
+    <SubscriptionModules />
+  {:else if activeView === "traditional"}
+    <TraditionalModules />
+  {:else}
+    <div class="text-center text-gh-text-black text-xl font-semibold mb-3">
+      Ha ocurrido un error al cargar los módulos
+    </div>
+  {/if}
 </main>
 
 <style>
