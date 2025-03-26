@@ -23,23 +23,23 @@
 >
   <div class="price-breakdown">
     <div class="flex justify-between items-center mb-1">
-      <span>Subtotal Módulos:</span>
-      <span>${pricingDetails.modulesTotal.toLocaleString("es-MX")}</span>
+      <span class="price-breakdown-title">Subtotal Módulos:</span>
+      <span class="price-breakdown-total">${pricingDetails.modulesTotal.toLocaleString("es-MX")}</span>
     </div>
 
     {#if pricingDetails.volumeDiscountRate > 0}
       <div class="flex justify-between items-center mb-1 text-sm-accent">
-        <span
+        <span class="price-breakdown-title"
           >Descuento por Volumen ({(
             pricingDetails.volumeDiscountRate * 100
           ).toFixed(0)}%) - {pricingDetails.eligibleModulesCount} módulos elegibles:</span
         >
-        <span
+        <span class="price-breakdown-total"
           >-${pricingDetails.volumeDiscountAmount.toLocaleString("es-MX")}</span
         >
       </div>
       <div class="text-xs text-gray-500 mb-2">
-        <p>
+        <p class="price-breakdown-description">
           *Solo módulos con plan Básico o Ligero califican para descuento por
           volumen
         </p>
@@ -49,8 +49,8 @@
     <div
       class="flex justify-between items-center font-bold border-t border-sm-divider mt-2 pt-2"
     >
-      <span>Total:</span>
-      <span>${pricingDetails.total.toLocaleString("es-MX")}</span>
+      <span class="price-breakdown-title">Total:</span>
+      <span class="price-breakdown-total">${pricingDetails.total.toLocaleString("es-MX")}</span>
     </div>
   </div>
 
@@ -61,11 +61,11 @@
     </small>
     <div class="buttons grid grid-cols-1 md:grid-cols-2 gap-2 col-span-2">
       <button
-        class="cursor-pointer border border-sm-button-secondary hover:bg-sm-button-secondary-hover transition-colors text-sm-text px-2 py-1 rounded-xl uppercase text-sm"
+        class="reset-button cursor-pointer border border-sm-button-secondary hover:bg-sm-button-secondary-hover transition-colors text-sm-text px-2 py-1 rounded-xl uppercase text-sm"
         onclick={() => resetEverything()}>Reiniciar cotización</button
       >
       <button
-        class="cursor-pointer bg-sm-button-primary hover:shadow-lg transition-all duration-300 text-white px-2 py-1 rounded-xl uppercase text-sm"
+        class="continue-button cursor-pointer bg-sm-button-primary hover:shadow-lg transition-all duration-300 text-white px-2 py-1 rounded-xl uppercase text-sm"
         onclick={() => alert("Testing")}>Continuar</button
       >
     </div>

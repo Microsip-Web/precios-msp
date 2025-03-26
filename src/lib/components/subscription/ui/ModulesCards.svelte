@@ -310,13 +310,13 @@
                   />
                 </div>
                 <div class="name text-sm md:text-base max-w-4/5 md:max-w-full">
-                  <h2>{module.name}</h2>
+                  <h2 class="module-name-text">{module.name}</h2>
                 </div>
               </div>
               <div class="col-two flex items-center justify-end">
                 <div class="current-price">
                   {#if selectedModules[module.name].selected}
-                    <p class="text-sm md:text-base">
+                    <p class="module-price-text text-sm md:text-base">
                       ${calculatePrice(
                         module,
                         selectedModules[module.name].plan,
@@ -324,7 +324,7 @@
                       ).toLocaleString("es-MX")}
                     </p>
                   {:else}
-                    <p class="text-gray-400"></p>
+                    <p class="module-price-text-empty text-gray-400"></p>
                   {/if}
                 </div>
               </div>
@@ -334,9 +334,9 @@
             {#if selectedModules[module.name].selected}
               <div class="select-buttons flex flex-col gap-2">
                 <div class="select-plan">
-                  <label for="plan" class="text-sm md:text-base">Plan</label>
+                  <label for="plan" class="module-select-label text-sm md:text-base">Plan</label>
                   <select
-                    class="w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
+                    class="module-select-dropdown w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
                     bind:value={selectedModules[module.name].plan}
                     onclick={(e) => e.stopPropagation()}
                   >
@@ -361,12 +361,12 @@
                 <!-- Show corporate users select only when corporate plan is selected -->
                 {#if selectedModules[module.name].plan === "corporate"}
                   <div class="corporate-select">
-                    <label for="users" class="text-sm md:text-base">
+                    <label for="users" class="module-select-label text-sm md:text-base">
                       Usuarios
                     </label>
                     <select
                       id="users"
-                      class="w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
+                      class="module-select-dropdown w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
                       bind:value={selectedModules[module.name].users}
                       onclick={(e) => e.stopPropagation()}
                     >
@@ -389,7 +389,7 @@
                 <div
                   class="addons mt-4 pl-2 border-l border-mc-outlined-borders"
                 >
-                  <h3 class="text-sm md:text-base mb-2 font-medium">Complementos</h3>
+                  <h3 class="module-addons-title text-sm md:text-base mb-2 font-medium">Complementos</h3>
 
                   {#each module.addon as addon}
                     {#if selectedAddons[addon.name]}
@@ -434,12 +434,12 @@
                               />
                             </div>
                             <div class="name">
-                              <h4>{addon.name}</h4>
+                              <h4 class="module-addon-name">{addon.name}</h4>
                             </div>
                           </div>
                           <div class="price">
                             {#if selectedAddons[addon.name].selected}
-                              <p>
+                              <p class="module-addon-price">
                                 ${addon.name === "SICS"
                                   ? (
                                       addon.price *
@@ -455,7 +455,7 @@
                                     : addon.price.toLocaleString("es-MX")}
                               </p>
                             {:else}
-                              <p class="text-gray-400"></p>
+                              <p class="module-addon-price-empty text-gray-400"></p>
                             {/if}
                           </div>
                         </div>
@@ -465,7 +465,7 @@
                           <div class="addon-options">
                             {#if addon.name === "SICS"}
                               <div class="sucursales-input flex items-center mt-2">
-                                <label for="sucursales" class="mr-2 text-sm"
+                                <label for="sucursales" class="module-addon-label mr-2 text-sm"
                                   >Sucursales:</label
                                 >
                                 <input
@@ -489,7 +489,7 @@
                               </div>
                             {:else if addon.name === "Movimientos Bancarios"}
                               <div class="credencial-input flex items-center mt-2">
-                                <label for="credencial" class="mr-2 text-sm"
+                                <label for="credencial" class="module-addon-label mr-2 text-sm"
                                   >Credenciales:</label
                                 >
                                 <input

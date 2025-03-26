@@ -31,13 +31,13 @@
   <div
     class="payment-frequency mb-4 grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4 items-center"
   >
-    <h3 class="text-sm md:text-base font-semibold">Frecuencia de pago:</h3>
+    <h3 class="payment-frequency-title text-sm md:text-base font-semibold">Frecuencia de pago:</h3>
     <div class="frequency-select">
       <div
         class="border-l border-sm-divider pl-2 md:pl-0 md:border-none md:justify-self-end"
       >
         <select
-          class="w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
+          class="payment-frequency-dropdown w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
           bind:value={paymentFrequency}
         >
           <option value="monthly">Mensual</option>
@@ -50,38 +50,38 @@
 
   <div class="price-breakdown">
     <div class="flex justify-between items-center mb-1">
-      <span>Subtotal Módulos:</span>
-      <span>${pricingDetails.modulesTotal.toLocaleString("es-MX")}</span>
+      <span class="price-breakdown-title">Subtotal Módulos:</span>
+      <span class="price-breakdown-total">${pricingDetails.modulesTotal.toLocaleString("es-MX")}</span>
     </div>
 
     {#if pricingDetails.volumeDiscountRate > 0}
       <div class="flex justify-between items-center mb-1 text-sm-accent">
-        <span
+        <span class="price-breakdown-title"
           >Descuento por Volumen ({(
             pricingDetails.volumeDiscountRate * 100
           ).toFixed(0)}%):</span
         >
-        <span
+        <span class="price-breakdown-total"
           >-${pricingDetails.volumeDiscountAmount.toLocaleString("es-MX")}</span
         >
       </div>
     {/if}
 
     <div class="flex justify-between items-center mb-1">
-      <span>Subtotal Complementos:</span>
-      <span>${pricingDetails.addonsTotal.toLocaleString("es-MX")}</span>
+      <span class="price-breakdown-title">Subtotal Complementos:</span>
+      <span class="price-breakdown-total">${pricingDetails.addonsTotal.toLocaleString("es-MX")}</span>
     </div>
 
     {#if pricingDetails.paymentFrequencyDiscountRate > 0}
       <div class="flex justify-between items-center mb-1 text-sm-accent">
-        <span
+        <span class="price-breakdown-title"
           >Descuento por Pago {paymentFrequency === "semester"
             ? "Semestral"
             : "Anual"} ({(
             pricingDetails.paymentFrequencyDiscountRate * 100
           ).toFixed(0)}%):</span
         >
-        <span
+        <span class="price-breakdown-total"
           >-${pricingDetails.paymentFrequencyDiscountAmount.toLocaleString(
             "es-MX"
           )}</span
@@ -92,16 +92,16 @@
     <div
       class="flex justify-between items-center font-semibold border-t border-sm-divider mt-2 pt-2"
     >
-      <span>Total Mensual:</span>
-      <span>${pricingDetails.monthlyTotal.toLocaleString("es-MX")}</span>
+      <span class="price-breakdown-title">Total Mensual:</span>
+      <span class="price-breakdown-total">${pricingDetails.monthlyTotal.toLocaleString("es-MX")}</span>
     </div>
 
     {#if paymentFrequency !== "monthly"}
       <div class="flex justify-between items-center text-sm text-gray-600 mb-2">
-        <span>
-          {paymentFrequency === "semester" ? "6 meses" : "12 meses"}
-        </span>
-        <span>x {pricingDetails.paymentFrequencyMultiplier}</span>
+        <span class="price-breakdown-title"
+          >{paymentFrequency === "semester" ? "6 meses" : "12 meses"}</span
+        >
+        <span class="price-breakdown-title">x {pricingDetails.paymentFrequencyMultiplier}</span>
       </div>
     {/if}
 
@@ -109,13 +109,14 @@
       class="flex justify-between items-center font-bold pt-2 border-t border-sm-divider mt-2"
     >
       <span
+        class="price-breakdown-title"
         >Total {paymentFrequency === "monthly"
           ? "Mensual"
           : paymentFrequency === "semester"
             ? "Semestral"
             : "Anual"}:</span
       >
-      <span>${pricingDetails.total.toLocaleString("es-MX")}</span>
+      <span class="price-breakdown-total">${pricingDetails.total.toLocaleString("es-MX")}</span>
     </div>
   </div>
 
@@ -126,11 +127,11 @@
     </small>
     <div class="buttons grid grid-cols-1 md:grid-cols-2 gap-2 col-span-2">
       <button
-        class="cursor-pointer border border-sm-button-secondary hover:bg-sm-button-secondary-hover transition-colors text-sm-text px-2 py-1 rounded-xl uppercase text-sm"
+        class="reset-button cursor-pointer border border-sm-button-secondary hover:bg-sm-button-secondary-hover transition-colors text-sm-text px-2 py-1 rounded-xl uppercase text-sm"
         onclick={() => resetEverything()}>Reiniciar cotización</button
       >
       <button
-        class="cursor-pointer bg-sm-button-primary hover:shadow-lg transition-all duration-300 text-white px-2 py-1 rounded-xl uppercase text-sm"
+        class="continue-button cursor-pointer bg-sm-button-primary hover:shadow-lg transition-all duration-300 text-white px-2 py-1 rounded-xl uppercase text-sm"
         onclick={() => alert("Testing")}>Continuar</button
       >
     </div>
