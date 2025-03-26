@@ -7,12 +7,6 @@ export interface ModulePrice {
   premium: number; // Plan "Premium"
   corporate: number; // Plan "Corporativo" (base price for 10 users)
   corporateIncrement: number; // Price added per +5 users above 10
-  addon?: {
-    parent: string;
-    name: string;
-    img: string;
-    price: number;
-  }[]; //name, image and price only;
 }
 export const tradicionalModulesAndPrices: ModulePrice[] = [
   {
@@ -34,14 +28,6 @@ export const tradicionalModulesAndPrices: ModulePrice[] = [
     premium: 17691,
     corporate: 36554,
     corporateIncrement: 17262,
-    addon: [
-      {
-        parent: "Bancos",
-        name: "Movimientos Bancarios",
-        img: "https://cdn.prod.website-files.com/627983ccef617d453b9485ad/671bdc3d6b63dc4ce39fe6a5_Bancos.png",
-        price: 400,
-      },
-    ],
   },
   {
     name: "Nómina",
@@ -62,14 +48,6 @@ export const tradicionalModulesAndPrices: ModulePrice[] = [
     premium: 12243,
     corporate: 29950,
     corporateIncrement: 11570,
-    addon: [
-      {
-        parent: "Inventarios",
-        name: "SICS",
-        img: "https://cdn.prod.website-files.com/627983ccef617d453b9485ad/671bdc3f8034bdabc471b5fb_Inventarios.png",
-        price: 260,
-      },
-    ],
   },
   {
     name: "Cuentas por cobrar",

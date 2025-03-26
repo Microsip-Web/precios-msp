@@ -126,7 +126,7 @@
     </small>
     <div class="buttons grid grid-cols-1 md:grid-cols-2 gap-2 col-span-2">
       <button
-        class="cursor-pointer border border-gray-200 hover:bg-sm-button-secondary-hover transition-colors text-sm-text px-2 py-1 rounded-xl uppercase text-sm"
+        class="cursor-pointer border border-sm-button-secondary hover:bg-sm-button-secondary-hover transition-colors text-sm-text px-2 py-1 rounded-xl uppercase text-sm"
         onclick={() => resetEverything()}>Reiniciar cotización</button
       >
       <button
