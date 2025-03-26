@@ -19,16 +19,13 @@
   }
 </script>
 
-<div class="mb-16">
-  <h2 class="text-xl font-semibold mb-3">
-    Escoge el plan que mas <span class="text-ps-accent">adapte</span> a tu empresa
+<div class="container">
+  <h2 class="title">
+    Escoge el plan que mas <span class="accent">adapte</span> a tu empresa
   </h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="plan-grid">
     <div
-      class="suscripcion cursor-pointer border rounded-[20px] p-4 transition-colors relative {activeView ===
-      'subscription'
-        ? 'border-ps-accent bg-ps-accent/5'
-        : 'border-ps-outlined-borders hover:border-ps-accent/50'}"
+      class="plan subscription {activeView === 'subscription' ? 'active' : ''}"
       onclick={() => handleViewChange("subscription")}
       onkeydown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -38,68 +35,58 @@
       tabindex="0"
       role="button"
     >
-      <div class="flex justify-center">
+      <div class="button-container">
         <button
           onclick={() => handleViewChange("subscription")}
-          class="border cursor-pointer rounded-full px-2.5 py-0.5 uppercase font-medium mb-6 {activeView ===
-          'subscription'
-            ? 'border-ps-accent bg-ps-accent text-white'
-            : 'border-ps-accent text-ps-accent'}"
+          class="plan-button {activeView === 'subscription'
+            ? 'active-button'
+            : ''}"
         >
           Suscripción
         </button>
       </div>
-      <div class="benefits text-ps-text font-normal text-sm">
-        <ul class="space-y-3">
+      <div class="benefits-list">
+        <ul>
           <li>
-            <div class="flex items-center space-x-2">
-              <div class="text-ps-accent">✓</div>
+            <div class="benefit-item">
+              <div class="check-mark">✓</div>
               <div>Descuentos especiales por frecuencia de pago</div>
             </div>
           </li>
           <li>
-            <div class="flex items-center space-x-2">
-              <div class="text-ps-accent">✓</div>
+            <div class="benefit-item">
+              <div class="check-mark">✓</div>
               <div>
                 Ajusta y modifica módulos y usuarios en cualquier momento
               </div>
             </div>
           </li>
           <li>
-            <div class="flex items-center space-x-2">
-              <div class="text-ps-accent">✓</div>
+            <div class="benefit-item">
+              <div class="check-mark">✓</div>
               <div>Siempre tienes acceso a la ultima versión Microsip</div>
             </div>
           </li>
           <li>
-            <div class="flex items-center space-x-2">
-              <div class="text-ps-accent">✓</div>
+            <div class="benefit-item">
+              <div class="check-mark">✓</div>
               <div>Acceso a las ultimas mejoras y cambios en Microsip</div>
             </div>
           </li>
           <li>
-            <div class="flex items-center space-x-2">
-              <div class="text-ps-accent">✓</div>
+            <div class="benefit-item">
+              <div class="check-mark">✓</div>
               <div>No pagas actualizaciones</div>
             </div>
           </li>
         </ul>
       </div>
-      <div
-        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-10"
-      >
-        <div
-          class="tip-badge bg-ps-badge-background text-ps-badge-text px-2.5 py-0.5 rounded-full text-sm font-medium"
-        >
-          Recomendado
-        </div>
+      <div class="badge-container">
+        <div class="tip-badge">Recomendado</div>
       </div>
     </div>
     <div
-      class="tradicional cursor-pointer border rounded-[20px] p-4 transition-colors {activeView ===
-      'traditional'
-        ? 'border-ps-accent bg-ps-accent/5'
-        : 'border-ps-outlined-borders hover:border-ps-accent/50'}"
+      class="plan traditional {activeView === 'traditional' ? 'active' : ''}"
       onclick={() => handleViewChange("traditional")}
       onkeydown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -109,52 +96,51 @@
       tabindex="0"
       role="button"
     >
-      <div class="flex justify-center">
+      <div class="button-container">
         <button
           onclick={() => handleViewChange("traditional")}
-          class="border cursor-pointer rounded-full px-2.5 py-0.5 uppercase font-medium mb-6 {activeView ===
-          'traditional'
-            ? 'border-ps-accent bg-ps-accent text-white'
-            : 'border-ps-outlined-borders text-ps-text-disabled'}"
+          class="plan-button {activeView === 'traditional'
+            ? 'active-button'
+            : 'inactive-button'}"
         >
           Tradicional
         </button>
       </div>
-      <div class="benefits text-ps-text font-normal text-sm">
-        <ul class="space-y-3">
+      <div class="benefits-list">
+        <ul>
           <li>
-            <div class="flex items-center space-x-2">
-              <div class="text-ps-accent">✓</div>
+            <div class="benefit-item">
+              <div class="check-mark">✓</div>
               <div>Paga por la ultima versión año con año</div>
             </div>
           </li>
           <li>
-            <div class="flex items-center space-x-2">
-              <div class="text-ps-accent">✓</div>
+            <div class="benefit-item">
+              <div class="check-mark">✓</div>
               <div>Adquiere la versión actual en un solo pago</div>
             </div>
           </li>
           <li>
-            <div class="flex items-center space-x-2">
-              <div class="text-ps-accent">✓</div>
+            <div class="benefit-item">
+              <div class="check-mark">✓</div>
               <div>Sin contratos de tiempos forzosos</div>
             </div>
           </li>
           <li>
-            <div class="flex items-center space-x-2">
-              <div class="text-ps-accent">✓</div>
+            <div class="benefit-item">
+              <div class="check-mark">✓</div>
               <div>Adaptable al crecimiento de tu negocio</div>
             </div>
           </li>
           <li>
-            <div class="flex items-center space-x-2 text-ps-text">
-              <div>✗</div>
+            <div class="benefit-item">
+              <div class="cross-mark">✗</div>
               <div>Descuentos especiales por frecuencia de pago</div>
             </div>
           </li>
           <li>
-            <div class="flex items-center space-x-2 text-ps-text">
-              <div>✗</div>
+            <div class="benefit-item">
+              <div class="cross-mark">✗</div>
               <div>Acceso a las ultimas mejoras y cambios en Microsip</div>
             </div>
           </li>
@@ -163,3 +149,123 @@
     </div>
   </div>
 </div>
+
+<style>
+  .container {
+    margin-bottom: 4rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .accent {
+    color: var(--ps-accent, #0070f3);
+  }
+
+  .plan-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .plan-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .plan {
+    cursor: pointer;
+    border: 1px solid var(--ps-outlined-borders, #e5e7eb);
+    border-radius: 20px;
+    padding: 1rem;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .plan:hover:not(.active) {
+    border-color: rgba(var(--ps-accent-rgb, 0, 112, 243), 0.5);
+  }
+
+  .plan.active {
+    border-color: var(--ps-accent, #0070f3);
+    background-color: rgba(var(--ps-accent-rgb, 0, 112, 243), 0.05);
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .plan-button {
+    border: 1px solid;
+    cursor: pointer;
+    border-radius: 9999px;
+    padding: 0.125rem 0.625rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .active-button {
+    border-color: var(--ps-accent, #0070f3);
+    background-color: var(--ps-accent, #0070f3);
+    color: white;
+  }
+
+  .inactive-button {
+    border-color: var(--ps-outlined-borders, #e5e7eb);
+    color: var(--ps-text-disabled, #9ca3af);
+  }
+
+  .subscription .plan-button:not(.active-button) {
+    border-color: var(--ps-accent, #0070f3);
+    color: var(--ps-accent, #0070f3);
+  }
+
+  .benefits-list {
+    color: var(--ps-text, #374151);
+    font-weight: normal;
+    font-size: 0.875rem;
+  }
+
+  .benefits-list ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .check-mark {
+    color: var(--ps-accent, #0070f3);
+  }
+
+  .cross-mark {
+    color: var(--ps-text, #374151);
+  }
+
+  .badge-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    z-index: 10;
+  }
+
+  .tip-badge {
+    background-color: var(--ps-badge-background, #f3f4f6);
+    color: var(--ps-badge-text, #4b5563);
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+</style>
