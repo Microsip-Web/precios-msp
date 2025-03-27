@@ -71,6 +71,9 @@
 </div>
 
 <style>
+  * {
+    font-family: "Sora", sans-serif;
+  }
   /* Temporary color variables - replace with your theme colors later */
   :root {
     --sm-text: #2c3e50;
@@ -164,6 +167,7 @@
     border-radius: 0.75rem;
     text-transform: uppercase;
     font-size: 0.875rem;
+    border: none;
   }
 
   .continue-button:hover {
