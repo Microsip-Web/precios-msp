@@ -1,40 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
-@import "tailwindcss";
-
-@theme {
-  --font-sora: "Sora", sans-serif;
-
-  /* modules cards ui styles */
-  --color-mc-accent: #FF8623;
-  --color-mc-outlined-select-borders: #0000003B;
-  --color-mc-outlined-borders: #E0E0E0;
-  --color-mc-text: #00000099;
-
-  /* plan selection ui styles */
-  --color-ps-accent: #FF8623;
-  --color-ps-outlined-borders: #E0E0E0;
-  --color-ps-text: #00000099;
-  --color-ps-text-disabled: #0000004D;
-  --color-ps-badge-text: #FFFFFF;
-  --color-ps-badge-background: #FF8623;
-  --color-ps-text-black: #000000DE;
-
-  /* plan summary ui styles */
-  --color-sm-background: #FAFAFC;
-  --color-sm-text: #00000099;
-  --color-sm-accent: #FF8623;
-  --color-sm-outlined-borders: #E0E0E0;
-  --color-sm-divider: #0000001F;
-  --color-sm-text-black: #000000DE;
-  --color-sm-button-primary: #FF8623;
-  --color-sm-button-secondary: #636668;
-  --color-sm-button-secondary-hover: #2024270A;
-  /* global headers */
-  --color-gh-text: #00000099;
-  --color-gh-text-accent: #FF8623;
-  --color-gh-text-black: #000000DE;
-}
-
 /* extreme shadow test */
 .tip-badge {
   box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.12), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 3px 5px -1px rgba(0, 0, 0, 0.20);

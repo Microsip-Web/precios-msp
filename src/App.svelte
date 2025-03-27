@@ -19,22 +19,17 @@
   });
 </script>
 
-<main class="font-sora max-w-4xl mx-auto p-5">
-  <div class="heading flex items-center justify-center py-16">
-    <h1
-      class="font-bold text-gh-text-black text-3xl md:text-5xl leading-10 md:leading-[64px]"
-    >
-      Conoce el precio estimado de <span class="text-gh-text-accent"
-        >Microsip</span
+<main class="app-container">
+  <div class="app-header">
+    <h1 class="app-title">
+      Conoce el precio estimado de <span class="app-title-accent">Microsip</span
       > para tu empresa
     </h1>
   </div>
   <PlanSelector {activeView} {setActiveView} />
-  <div class="mb-16">
-    <h2 class="text-gh-text-black text-xl font-semibold mb-3">
-      Selecciona los modulos que necesitas
-    </h2>
-    <p class="text-gh-text leading-7 text-sm md:text-base">
+  <div class="app-description">
+    <h2 class="description-title">Selecciona los modulos que necesitas</h2>
+    <p class="description-text">
       Selecciona uno o más módulos. Para cada módulo, escoge el plan (Básico,
       Ligero, Pro, Premium o Corporativo). Si es Corporativo, especifica el
       número de usuarios en incrementos de 5 (10 a 50).
@@ -46,36 +41,84 @@
   {:else if activeView === "traditional"}
     <TraditionalModules />
   {:else}
-    <div class="text-center text-gh-text-black text-xl font-semibold mb-3">
-      Ha ocurrido un error al cargar los módulos
-    </div>
+    <div class="error-message">Ha ocurrido un error al cargar los módulos</div>
   {/if}
 </main>
 
 <style>
-  :global(:where(#microsip-embed, #microsip-embed *)) {
-    all: revert;
-    box-sizing: border-box;
+  @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+  /* Temporary color variables - replace with your theme colors later */
+  :root {
+    --gh-text-black: #1a202c;
+    --gh-text-accent: #3498db;
+    --gh-text: #4a5568;
+  }
+
+  /* Main container */
+  .app-container {
     font-family: "Sora", sans-serif;
-    color: initial;
+    max-width: 56rem; /* max-w-4xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.25rem; /* p-5 */
   }
 
-  :global(#microsip-embed) {
-    /* Your app's base styles */
-    max-width: 4xl;
-    margin: 0 auto;
-    padding: 1.25rem;
+  /* Header section */
+  .app-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem; /* py-16 */
+    padding-bottom: 4rem;
   }
 
-  /* Re-apply your Tailwind utilities with higher specificity */
-  :global(#microsip-embed .module-card) {
-    margin-bottom: 1rem !important;
-    border-radius: 0.75rem !important;
-    padding: 0.5rem !important;
+  .app-title {
+    font-weight: 700; /* font-bold */
+    color: var(--gh-text-black);
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.5rem; /* leading-10 */
   }
 
-  :global(#microsip-embed .module-addon-label) {
-    margin-right: 0.5rem !important;
-    font-size: 0.875rem !important;
+  .app-title-accent {
+    color: var(--gh-text-accent);
+  }
+
+  /* Description section */
+  .app-description {
+    margin-bottom: 4rem; /* mb-16 */
+  }
+
+  .description-title {
+    color: var(--gh-text-black);
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.75rem; /* mb-3 */
+  }
+
+  .description-text {
+    color: var(--gh-text);
+    line-height: 1.75rem; /* leading-7 */
+    font-size: 0.875rem; /* text-sm */
+  }
+
+  /* Error message */
+  .error-message {
+    text-align: center;
+    color: var(--gh-text-black);
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.75rem; /* mb-3 */
+  }
+
+  /* Media queries for responsiveness */
+  @media (min-width: 768px) {
+    .app-title {
+      font-size: 3rem; /* md:text-5xl */
+      line-height: 4rem; /* md:leading-[64px] */
+    }
+
+    .description-text {
+      font-size: 1rem; /* md:text-base */
+    }
   }
 </style>

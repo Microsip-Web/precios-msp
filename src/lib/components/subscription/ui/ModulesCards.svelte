@@ -234,55 +234,54 @@
       // Reset all modules
       Object.keys(selectedModules).forEach((moduleName) => {
         selectedModules[moduleName] = {
-        ...selectedModules[moduleName],
-        selected: false,
-        users: 10,
-        // Reset to the initial plan
-        plan: checkIfPlanIsNaN(
-          subscriptionModulesAndPrices.find(m => m.name === moduleName)!,
-          "basic"
-        )
-      };
-    });
+          ...selectedModules[moduleName],
+          selected: false,
+          users: 10,
+          // Reset to the initial plan
+          plan: checkIfPlanIsNaN(
+            subscriptionModulesAndPrices.find((m) => m.name === moduleName)!,
+            "basic"
+          ),
+        };
+      });
 
-    // Reset all addons
-    Object.keys(selectedAddons).forEach((addonName) => {
-      selectedAddons[addonName] = {
-        ...selectedAddons[addonName],
-        selected: false,
-        sucursales: addonName === "SICS" ? 1 : undefined,
-        credencial: addonName === "Movimientos Bancarios" ? 1 : undefined
-      };
-    });
+      // Reset all addons
+      Object.keys(selectedAddons).forEach((addonName) => {
+        selectedAddons[addonName] = {
+          ...selectedAddons[addonName],
+          selected: false,
+          sucursales: addonName === "SICS" ? 1 : undefined,
+          credencial: addonName === "Movimientos Bancarios" ? 1 : undefined,
+        };
+      });
 
-    // Reset payment frequency to monthly
-    paymentFrequency = "monthly";
+      // Reset payment frequency to monthly
+      paymentFrequency = "monthly";
 
-    // scroll to top
-    window.scrollTo({
+      // scroll to top
+      window.scrollTo({
         top: 0,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   }
 </script>
 
-<section class="font-sora text-mc-text">
+<section class="modules-container">
   {#if subscriptionModulesAndPrices.length > 0}
     <!-- card for each module -->
     {#each subscriptionModulesAndPrices as module}
       <!-- Only render if this module's data has been initialized -->
       {#if selectedModules[module.name]}
         <div
-          class="module-card mb-4 border rounded-xl p-2 md:p-4"
-          class:border-mc-accent={selectedModules[module.name].selected}
-          class:border-mc-outlined-borders={!selectedModules[module.name]
-            .selected}
+          class="module-card"
+          class:selected={selectedModules[module.name].selected}
+          class:unselected={!selectedModules[module.name].selected}
         >
-          <div class="col-one flex flex-col gap-4">
-            <div class="name-image flex items-center justify-between">
+          <div class="module-content">
+            <div class="module-header">
               <div
-                class="col-one flex items-center cursor-pointer"
+                class="module-toggle-area"
                 onclick={() => toggleModule(module.name)}
                 onkeydown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
@@ -293,30 +292,23 @@
                 role="button"
                 aria-pressed={selectedModules[module.name].selected}
               >
-                <div class="module-toggle hidden">
+                <div class="module-toggle">
                   <input
-                    class="hidden"
                     type="checkbox"
                     bind:checked={selectedModules[module.name].selected}
                   />
                 </div>
-                <div
-                  class="img w-10 h-10 rounded-xl border border-mc-outlined-borders mr-2"
-                >
-                  <img
-                    class="w-full h-full object-cover"
-                    src={module.img}
-                    alt={module.name}
-                  />
+                <div class="module-image">
+                  <img src={module.img} alt={module.name} />
                 </div>
-                <div class="name text-sm md:text-base max-w-4/5 md:max-w-full">
+                <div class="module-title">
                   <h2 class="module-name-text">{module.name}</h2>
                 </div>
               </div>
-              <div class="col-two flex items-center justify-end">
+              <div class="module-price-container">
                 <div class="current-price">
                   {#if selectedModules[module.name].selected}
-                    <p class="module-price-text text-sm md:text-base">
+                    <p class="module-price-text">
                       ${calculatePrice(
                         module,
                         selectedModules[module.name].plan,
@@ -324,7 +316,7 @@
                       ).toLocaleString("es-MX")}
                     </p>
                   {:else}
-                    <p class="module-price-text-empty text-gray-400"></p>
+                    <p class="module-price-empty"></p>
                   {/if}
                 </div>
               </div>
@@ -332,11 +324,11 @@
 
             <!-- Only show select options when module is selected -->
             {#if selectedModules[module.name].selected}
-              <div class="select-buttons flex flex-col gap-2">
+              <div class="select-options">
                 <div class="select-plan">
-                  <label for="plan" class="module-select-label text-sm md:text-base">Plan</label>
+                  <label for="plan" class="module-select-label">Plan</label>
                   <select
-                    class="module-select-dropdown w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
+                    class="module-select-dropdown"
                     bind:value={selectedModules[module.name].plan}
                     onclick={(e) => e.stopPropagation()}
                   >
@@ -353,7 +345,9 @@
                       <option value="premium">Premium (5 usuarios)</option>
                     {/if}
                     {#if !isNaN(module.corporate)}
-                      <option value="corporate">Corporativo (10 o más usuarios)</option>
+                      <option value="corporate"
+                        >Corporativo (10 o más usuarios)</option
+                      >
                     {/if}
                   </select>
                 </div>
@@ -361,12 +355,12 @@
                 <!-- Show corporate users select only when corporate plan is selected -->
                 {#if selectedModules[module.name].plan === "corporate"}
                   <div class="corporate-select">
-                    <label for="users" class="module-select-label text-sm md:text-base">
+                    <label for="users" class="module-select-label">
                       Usuarios
                     </label>
                     <select
                       id="users"
-                      class="module-select-dropdown w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
+                      class="module-select-dropdown"
                       bind:value={selectedModules[module.name].users}
                       onclick={(e) => e.stopPropagation()}
                     >
@@ -386,20 +380,15 @@
 
               <!-- Render addons if this module has any and it's selected -->
               {#if module.addon && module.addon.length > 0}
-                <div
-                  class="addons mt-4 pl-2 border-l border-mc-outlined-borders"
-                >
-                  <h3 class="module-addons-title text-sm md:text-base mb-2 font-medium">Complementos</h3>
+                <div class="addons-container">
+                  <h3 class="addons-title">Complementos</h3>
 
                   {#each module.addon as addon}
                     {#if selectedAddons[addon.name]}
                       <div
-                        class="text-sm addon-card mb-3 p-2 border rounded-xl cursor-pointer"
-                        class:border-mc-accent={selectedAddons[addon.name]
-                          .selected}
-                        class:border-mc-outlined-borders={!selectedAddons[
-                          addon.name
-                        ].selected}
+                        class="addon-card"
+                        class:selected={selectedAddons[addon.name].selected}
+                        class:unselected={!selectedAddons[addon.name].selected}
                         onclick={(e) => {
                           e.stopPropagation(); // Prevent triggering parent onclick
                           toggleAddon(addon.name);
@@ -414,11 +403,10 @@
                         role="button"
                         aria-pressed={selectedAddons[addon.name].selected}
                       >
-                        <div class="flex justify-between items-center">
-                          <div class="flex items-center">
+                        <div class="addon-header">
+                          <div class="addon-toggle-area">
                             <div class="addon-toggle">
                               <input
-                                class="hidden"
                                 type="checkbox"
                                 bind:checked={
                                   selectedAddons[addon.name].selected
@@ -426,18 +414,14 @@
                                 onclick={(e) => e.stopPropagation()}
                               />
                             </div>
-                            <div class="img mr-2">
-                              <img
-                                class="w-8 h-8 object-cover rounded-xl border border-mc-outlined-borders"
-                                src={addon.img}
-                                alt={addon.name}
-                              />
+                            <div class="addon-image">
+                              <img src={addon.img} alt={addon.name} />
                             </div>
-                            <div class="name">
+                            <div class="addon-title">
                               <h4 class="module-addon-name">{addon.name}</h4>
                             </div>
                           </div>
-                          <div class="price">
+                          <div class="addon-price-container">
                             {#if selectedAddons[addon.name].selected}
                               <p class="module-addon-price">
                                 ${addon.name === "SICS"
@@ -455,7 +439,7 @@
                                     : addon.price.toLocaleString("es-MX")}
                               </p>
                             {:else}
-                              <p class="module-addon-price-empty text-gray-400"></p>
+                              <p class="addon-price-empty"></p>
                             {/if}
                           </div>
                         </div>
@@ -464,15 +448,16 @@
                         {#if selectedAddons[addon.name].selected}
                           <div class="addon-options">
                             {#if addon.name === "SICS"}
-                              <div class="sucursales-input flex items-center mt-2">
-                                <label for="sucursales" class="module-addon-label mr-2 text-sm"
-                                  >Sucursales:</label
+                              <div class="sucursales-input">
+                                <label
+                                  for="sucursales"
+                                  class="addon-input-label">Sucursales:</label
                                 >
                                 <input
                                   id="sucursales"
                                   type="number"
                                   min="1"
-                                  class="w-20 rounded-xl border border-mc-outlined-borders p-1 text-sm"
+                                  class="addon-number-input"
                                   bind:value={
                                     selectedAddons[addon.name].sucursales
                                   }
@@ -488,15 +473,16 @@
                                 />
                               </div>
                             {:else if addon.name === "Movimientos Bancarios"}
-                              <div class="credencial-input flex items-center mt-2">
-                                <label for="credencial" class="module-addon-label mr-2 text-sm"
-                                  >Credenciales:</label
+                              <div class="credencial-input">
+                                <label
+                                  for="credencial"
+                                  class="addon-input-label">Credenciales:</label
                                 >
                                 <input
                                   id="credencial"
                                   type="number"
                                   min="1"
-                                  class="w-20 rounded-xl border border-mc-outlined-borders p-1 text-sm"
+                                  class="addon-number-input"
                                   bind:value={
                                     selectedAddons[addon.name].credencial
                                   }
@@ -525,15 +511,262 @@
       {/if}
     {/each}
   {:else}
-    <div>Ha habido un error al cargar los módulos, recarga la página</div>
+    <div class="error-message">
+      Ha habido un error al cargar los módulos, recarga la página
+    </div>
   {/if}
 
   <!-- {@render summary()} -->
-  <Summary
-    pricingDetails={pricingDetails}
-    bind:paymentFrequency={paymentFrequency}
-    resetEverything={resetEverything}
-  />
+  <Summary {pricingDetails} bind:paymentFrequency {resetEverything} />
 </section>
 
+<style>
+  /* Temporary color variables - replace with your theme colors later */
+  :root {
+    --mc-text: #2c3e50;
+    --mc-accent: #3498db;
+    --mc-outlined-borders: #e2e8f0;
+    --gray-400: #a0aec0;
+  }
 
+  /* Module container */
+  .modules-container {
+    font-family: "Sora", sans-serif;
+    color: var(--mc-text);
+  }
+
+  /* Module card */
+  .module-card {
+    margin-bottom: 1rem;
+    border: 1px solid;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .module-card.selected {
+    border-color: var(--mc-accent);
+  }
+
+  .module-card.unselected {
+    border-color: var(--mc-outlined-borders);
+  }
+
+  /* Module content */
+  .module-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Module header */
+  .module-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Module toggle area */
+  .module-toggle-area {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  /* Module toggle (checkbox) */
+  .module-toggle {
+    display: none;
+  }
+
+  .module-toggle input {
+    display: none;
+  }
+
+  /* Module image */
+  .module-image {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--mc-outlined-borders);
+    margin-right: 0.5rem;
+  }
+
+  .module-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Module title */
+  .module-title {
+    font-size: 0.875rem;
+    max-width: 80%;
+  }
+
+  /* Module price */
+  .module-price-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .module-price-text {
+    font-size: 0.875rem;
+  }
+
+  .module-price-empty {
+    color: var(--gray-400);
+  }
+
+  /* Select options */
+  .select-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Select labels */
+  .module-select-label {
+    font-size: 0.875rem;
+  }
+
+  /* Select dropdowns */
+  .module-select-dropdown {
+    width: min-content;
+    font-size: 0.875rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--mc-outlined-borders);
+    padding: 0.5rem;
+  }
+
+  /* Addons container */
+  .addons-container {
+    margin-top: 1rem;
+    padding-left: 0.5rem;
+    border-left: 1px solid var(--mc-outlined-borders);
+  }
+
+  .addons-title {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  /* Addon card */
+  .addon-card {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    border: 1px solid;
+    border-radius: 0.75rem;
+    cursor: pointer;
+  }
+
+  .addon-card.selected {
+    border-color: var(--mc-accent);
+  }
+
+  .addon-card.unselected {
+    border-color: var(--mc-outlined-borders);
+  }
+
+  /* Addon header */
+  .addon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Addon toggle area */
+  .addon-toggle-area {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Addon toggle (checkbox) */
+  .addon-toggle {
+    display: none;
+  }
+
+  .addon-toggle input {
+    display: none;
+  }
+
+  /* Addon image */
+  .addon-image {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--mc-outlined-borders);
+    margin-right: 0.5rem;
+  }
+
+  .addon-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Addon price */
+  .addon-price-empty {
+    color: var(--gray-400);
+  }
+
+  /* Addon options */
+  .addon-options {
+    margin-top: 0.5rem;
+  }
+
+  /* Sucursales/Credencial inputs */
+  .sucursales-input,
+  .credencial-input {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .addon-input-label {
+    margin-right: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .addon-number-input {
+    width: 5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--mc-outlined-borders);
+    padding: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  /* Error message */
+  .error-message {
+    margin-bottom: 1rem;
+  }
+
+  /* Media queries for responsiveness */
+  @media (min-width: 768px) {
+    .module-card {
+      padding: 1rem;
+    }
+
+    .module-title {
+      font-size: 1rem;
+      max-width: 100%;
+    }
+
+    .module-price-text {
+      font-size: 1rem;
+    }
+
+    .module-select-label {
+      font-size: 1rem;
+    }
+
+    .module-select-dropdown {
+      font-size: 1rem;
+    }
+
+    .addons-title {
+      font-size: 1rem;
+    }
+  }
+</style>

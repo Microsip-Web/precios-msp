@@ -176,22 +176,21 @@
   }
 </script>
 
-<section class="font-sora text-mc-text">
+<section class="modules-container">
   {#if tradicionalModulesAndPrices.length > 0}
     <!-- card for each module -->
     {#each tradicionalModulesAndPrices as module}
       <!-- Only render if this module's data has been initialized -->
       {#if selectedModules[module.name]}
         <div
-          class="module-card mb-4 border rounded-xl p-2 md:p-4"
-          class:border-mc-accent={selectedModules[module.name].selected}
-          class:border-mc-outlined-borders={!selectedModules[module.name]
-            .selected}
+          class="module-card"
+          class:selected={selectedModules[module.name].selected}
+          class:unselected={!selectedModules[module.name].selected}
         >
-          <div class="col-one flex flex-col gap-4">
-            <div class="name-image flex items-center justify-between">
+          <div class="module-content">
+            <div class="module-header">
               <div
-                class="col-one flex items-center cursor-pointer"
+                class="module-toggle-area"
                 onclick={() => toggleModule(module.name)}
                 onkeydown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
@@ -202,30 +201,23 @@
                 role="button"
                 aria-pressed={selectedModules[module.name].selected}
               >
-                <div class="module-toggle hidden">
+                <div class="module-toggle">
                   <input
-                    class="hidden"
                     type="checkbox"
                     bind:checked={selectedModules[module.name].selected}
                   />
                 </div>
-                <div
-                  class="img w-10 h-10 rounded-xl border border-mc-outlined-borders mr-2"
-                >
-                  <img
-                    class="w-full h-full object-cover"
-                    src={module.img}
-                    alt={module.name}
-                  />
+                <div class="module-image">
+                  <img src={module.img} alt={module.name} />
                 </div>
-                <div class="name text-sm md:text-base max-w-4/5 md:max-w-full">
+                <div class="module-title">
                   <h2 class="module-name">{module.name}</h2>
                 </div>
               </div>
-              <div class="col-two flex items-center justify-end">
+              <div class="module-price-container">
                 <div class="current-price">
                   {#if selectedModules[module.name].selected}
-                    <p class="module-price-text text-sm md:text-base">
+                    <p class="module-price-text">
                       ${calculatePrice(
                         module,
                         selectedModules[module.name].plan,
@@ -233,7 +225,7 @@
                       ).toLocaleString("es-MX")}
                     </p>
                   {:else}
-                    <p class="module-price-text-empty text-gray-400"></p>
+                    <p class="module-price-empty"></p>
                   {/if}
                 </div>
               </div>
@@ -241,11 +233,11 @@
 
             <!-- Only show select options when module is selected -->
             {#if selectedModules[module.name].selected}
-              <div class="select-buttons flex flex-col gap-2">
+              <div class="select-options">
                 <div class="select-plan">
-                  <label for="plan" class="module-select-label text-sm md:text-base">Plan</label>
+                  <label for="plan" class="module-select-label">Plan</label>
                   <select
-                    class="module-select-dropdown w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
+                    class="module-select-dropdown"
                     bind:value={selectedModules[module.name].plan}
                     onclick={(e) => e.stopPropagation()}
                   >
@@ -272,12 +264,12 @@
                 <!-- Show corporate users select only when corporate plan is selected -->
                 {#if selectedModules[module.name].plan === "corporate"}
                   <div class="corporate-select">
-                    <label for="users" class="module-select-label text-sm md:text-base">
+                    <label for="users" class="module-select-label">
                       Usuarios
                     </label>
                     <select
                       id="users"
-                      class="module-select-dropdown w-min text-sm md:text-base rounded-xl border border-mc-outlined-borders p-2"
+                      class="module-select-dropdown"
                       bind:value={selectedModules[module.name].users}
                       onclick={(e) => e.stopPropagation()}
                     >
@@ -300,9 +292,159 @@
       {/if}
     {/each}
   {:else}
-    <div>Ha habido un error al cargar los módulos, recarga la página</div>
+    <div class="error-message">
+      Ha habido un error al cargar los módulos, recarga la página
+    </div>
   {/if}
 
   <!-- {@render summary()} -->
   <Summary {pricingDetails} {resetEverything} />
 </section>
+
+<style>
+  /* Temporary color variables - replace with your theme colors later */
+  :root {
+    --mc-text: #2c3e50;
+    --mc-accent: #3498db;
+    --mc-outlined-borders: #e2e8f0;
+    --gray-400: #a0aec0;
+  }
+
+  /* Module container */
+  .modules-container {
+    font-family: "Sora", sans-serif;
+    color: var(--mc-text);
+  }
+
+  /* Module card */
+  .module-card {
+    margin-bottom: 1rem;
+    border: 1px solid;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .module-card.selected {
+    border-color: var(--mc-accent);
+  }
+
+  .module-card.unselected {
+    border-color: var(--mc-outlined-borders);
+  }
+
+  /* Module content */
+  .module-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Module header */
+  .module-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Module toggle area */
+  .module-toggle-area {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  /* Module toggle (checkbox) */
+  .module-toggle {
+    display: none;
+  }
+
+  .module-toggle input {
+    display: none;
+  }
+
+  /* Module image */
+  .module-image {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--mc-outlined-borders);
+    margin-right: 0.5rem;
+  }
+
+  .module-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Module title */
+  .module-title {
+    font-size: 0.875rem;
+    max-width: 80%;
+  }
+
+  /* Module price */
+  .module-price-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .module-price-text {
+    font-size: 0.875rem;
+  }
+
+  .module-price-empty {
+    color: var(--gray-400);
+  }
+
+  /* Select options */
+  .select-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Select labels */
+  .module-select-label {
+    font-size: 0.875rem;
+  }
+
+  /* Select dropdowns */
+  .module-select-dropdown {
+    width: min-content;
+    font-size: 0.875rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--mc-outlined-borders);
+    padding: 0.5rem;
+  }
+
+  /* Error message */
+  .error-message {
+    margin-bottom: 1rem;
+  }
+
+  /* Media queries for responsiveness */
+  @media (min-width: 768px) {
+    .module-card {
+      padding: 1rem;
+    }
+
+    .module-title {
+      font-size: 1rem;
+      max-width: 100%;
+    }
+
+    .module-price-text {
+      font-size: 1rem;
+    }
+
+    .module-select-label {
+      font-size: 1rem;
+    }
+
+    .module-select-dropdown {
+      font-size: 1rem;
+    }
+  }
+</style>

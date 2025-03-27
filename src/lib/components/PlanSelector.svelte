@@ -151,6 +151,15 @@
 </div>
 
 <style>
+  * {
+    font-family: "Sora", sans-serif;
+    list-style-type: none;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
   .container {
     margin-bottom: 4rem;
   }
@@ -167,13 +176,13 @@
 
   .plan-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single column on mobile */
     gap: 1rem;
   }
 
   @media (min-width: 768px) {
     .plan-grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr; /* Two columns on tablet and up */
     }
   }
 
