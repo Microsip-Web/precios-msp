@@ -235,7 +235,7 @@
             {#if selectedModules[module.name].selected}
               <div class="select-options">
                 <div class="select-plan">
-                  <label for="plan" class="module-select-label">Plan</label>
+                  <!-- <label for="plan" class="module-select-label">Plan</label> -->
                   <select
                     class="module-select-dropdown"
                     bind:value={selectedModules[module.name].plan}
@@ -264,9 +264,9 @@
                 <!-- Show corporate users select only when corporate plan is selected -->
                 {#if selectedModules[module.name].plan === "corporate"}
                   <div class="corporate-select">
-                    <label for="users" class="module-select-label">
+                    <!-- <label for="users" class="module-select-label">
                       Usuarios
-                    </label>
+                    </label> -->
                     <select
                       id="users"
                       class="module-select-dropdown"
@@ -379,8 +379,12 @@
 
   /* Module title */
   .module-title {
-    font-size: 0.875rem;
-    max-width: 80%;
+    max-width: 60%;
+    .module-name {
+      font-size: 0.875rem;
+      font-weight: 400;
+      margin: 0;
+    }
   }
 
   /* Module price */
@@ -406,9 +410,9 @@
   }
 
   /* Select labels */
-  .module-select-label {
+  /* .module-select-label {
     font-size: 0.875rem;
-  }
+  } */
 
   /* Select dropdowns */
   .module-select-dropdown {
@@ -426,7 +430,7 @@
 
   /* Media queries for responsiveness */
   @media (min-width: 768px) {
-    .module-card {
+    /* .module-card {
       padding: 1rem;
     }
 
@@ -445,6 +449,6 @@
 
     .module-select-dropdown {
       font-size: 1rem;
-    }
+    } */
   }
 </style>

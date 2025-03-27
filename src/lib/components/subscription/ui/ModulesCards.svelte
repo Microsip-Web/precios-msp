@@ -302,7 +302,7 @@
                   <img src={module.img} alt={module.name} />
                 </div>
                 <div class="module-title">
-                  <h2 class="module-name-text">{module.name}</h2>
+                  <h2 class="module-name">{module.name}</h2>
                 </div>
               </div>
               <div class="module-price-container">
@@ -326,7 +326,7 @@
             {#if selectedModules[module.name].selected}
               <div class="select-options">
                 <div class="select-plan">
-                  <label for="plan" class="module-select-label">Plan</label>
+                  <!-- <label for="plan" class="module-select-label">Plan</label> -->
                   <select
                     class="module-select-dropdown"
                     bind:value={selectedModules[module.name].plan}
@@ -355,9 +355,9 @@
                 <!-- Show corporate users select only when corporate plan is selected -->
                 {#if selectedModules[module.name].plan === "corporate"}
                   <div class="corporate-select">
-                    <label for="users" class="module-select-label">
+                    <!-- <label for="users" class="module-select-label">
                       Usuarios
-                    </label>
+                    </label> -->
                     <select
                       id="users"
                       class="module-select-dropdown"
@@ -555,7 +555,7 @@
   .module-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   /* Module header */
@@ -598,8 +598,12 @@
 
   /* Module title */
   .module-title {
-    font-size: 0.875rem;
-    max-width: 80%;
+    max-width: 60%;
+    .module-name {
+      font-size: 0.875rem;
+      font-weight: 400;
+      margin: 0;
+    }
   }
 
   /* Module price */
@@ -625,9 +629,9 @@
   }
 
   /* Select labels */
-  .module-select-label {
+  /* .module-select-label {
     font-size: 0.875rem;
-  }
+  } */
 
   /* Select dropdowns */
   .module-select-dropdown {
@@ -639,16 +643,16 @@
   }
 
   /* Addons container */
-  .addons-container {
+  /* .addons-container {
     margin-top: 1rem;
     padding-left: 0.5rem;
     border-left: 1px solid var(--mc-outlined-borders);
-  }
+  } */
 
   .addons-title {
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   /* Addon card */
@@ -706,22 +710,31 @@
     object-fit: cover;
   }
 
+  .addon-title {
+    max-width: 60%;
+    .module-addon-name {
+      font-size: 0.875rem;
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+
   /* Addon price */
   .addon-price-empty {
     color: var(--gray-400);
   }
 
   /* Addon options */
-  .addon-options {
+  /* .addon-options {
     margin-top: 0.5rem;
-  }
+  } */
 
   /* Sucursales/Credencial inputs */
   .sucursales-input,
   .credencial-input {
     display: flex;
     align-items: center;
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
   }
 
   .addon-input-label {
@@ -744,7 +757,7 @@
 
   /* Media queries for responsiveness */
   @media (min-width: 768px) {
-    .module-card {
+    /* .module-card {
       padding: 1rem;
     }
 
@@ -767,6 +780,6 @@
 
     .addons-title {
       font-size: 1rem;
-    }
+    } */
   }
 </style>

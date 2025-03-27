@@ -216,7 +216,7 @@
     padding: 0.125rem 0.625rem;
     text-transform: uppercase;
     font-weight: 500;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
   }
 
   .active-button {
