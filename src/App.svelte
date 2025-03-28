@@ -41,6 +41,12 @@
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+
+  :global(body) {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
   /* Temporary color variables - replace with your theme colors later */
   :root {
     --gh-text-black: #1a202c;
