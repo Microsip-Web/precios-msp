@@ -46,40 +46,26 @@
         </button>
       </div>
       <div class="benefits-list">
-        <ul>
-          <li>
-            <div class="benefit-item">
-              <div class="check-mark">✓</div>
-              <div>Descuentos especiales por frecuencia de pago</div>
-            </div>
-          </li>
-          <li>
-            <div class="benefit-item">
-              <div class="check-mark">✓</div>
-              <div>
-                Ajusta y modifica módulos y usuarios en cualquier momento
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="benefit-item">
-              <div class="check-mark">✓</div>
-              <div>Siempre tienes acceso a la ultima versión Microsip</div>
-            </div>
-          </li>
-          <li>
-            <div class="benefit-item">
-              <div class="check-mark">✓</div>
-              <div>Acceso a las ultimas mejoras y cambios en Microsip</div>
-            </div>
-          </li>
-          <li>
-            <div class="benefit-item">
-              <div class="check-mark">✓</div>
-              <div>No pagas actualizaciones</div>
-            </div>
-          </li>
-        </ul>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>Descuentos especiales por frecuencia de pago</div>
+        </div>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>Ajusta y modifica módulos y usuarios en cualquier momento</div>
+        </div>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>Siempre tienes acceso a la ultima versión Microsip</div>
+        </div>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>Acceso a las ultimas mejoras y cambios en Microsip</div>
+        </div>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>No pagas actualizaciones</div>
+        </div>
       </div>
       <div class="badge-container">
         <div class="tip-badge">Recomendado</div>
@@ -107,44 +93,30 @@
         </button>
       </div>
       <div class="benefits-list">
-        <ul>
-          <li>
-            <div class="benefit-item">
-              <div class="check-mark">✓</div>
-              <div>Paga por la ultima versión año con año</div>
-            </div>
-          </li>
-          <li>
-            <div class="benefit-item">
-              <div class="check-mark">✓</div>
-              <div>Adquiere la versión actual en un solo pago</div>
-            </div>
-          </li>
-          <li>
-            <div class="benefit-item">
-              <div class="check-mark">✓</div>
-              <div>Sin contratos de tiempos forzosos</div>
-            </div>
-          </li>
-          <li>
-            <div class="benefit-item">
-              <div class="check-mark">✓</div>
-              <div>Adaptable al crecimiento de tu negocio</div>
-            </div>
-          </li>
-          <li>
-            <div class="benefit-item">
-              <div class="cross-mark">✗</div>
-              <div>Descuentos especiales por frecuencia de pago</div>
-            </div>
-          </li>
-          <li>
-            <div class="benefit-item">
-              <div class="cross-mark">✗</div>
-              <div>Acceso a las ultimas mejoras y cambios en Microsip</div>
-            </div>
-          </li>
-        </ul>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>Paga por la ultima versión año con año</div>
+        </div>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>Adquiere la versión actual en un solo pago</div>
+        </div>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>Sin contratos de tiempos forzosos</div>
+        </div>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>Adaptable al crecimiento de tu negocio</div>
+        </div>
+        <div class="benefit-item">
+          <div class="cross-mark">✗</div>
+          <div>Descuentos especiales por frecuencia de pago</div>
+        </div>
+        <div class="benefit-item">
+          <div class="cross-mark">✗</div>
+          <div>Acceso a las ultimas mejoras y cambios en Microsip</div>
+        </div>
       </div>
     </div>
   </div>
@@ -153,11 +125,6 @@
 <style>
   * {
     font-family: "Sora", sans-serif;
-    list-style-type: none;
-  }
-
-  ul {
-    padding-left: 0;
   }
 
   .container {
@@ -193,6 +160,8 @@
     padding: 16px; /* 1rem = 16px */
     transition: all 0.2s ease;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   .plan:hover:not(.active) {
@@ -207,6 +176,7 @@
   .button-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 16px;
   }
 
   .plan-button {
@@ -228,24 +198,23 @@
   .inactive-button {
     border-color: var(--ps-outlined-borders, #e5e7eb);
     color: var(--ps-text-disabled, #9ca3af);
+    background-color: white;
   }
 
   .subscription .plan-button:not(.active-button) {
     border-color: var(--ps-accent, #0070f3);
     color: var(--ps-accent, #0070f3);
+    background-color: white;
   }
 
   .benefits-list {
     color: var(--ps-text, #374151);
     font-weight: normal;
     font-size: 14px; /* 0.875rem = 0.875 * 16px */
-    margin-top: 12px;
-  }
-
-  .benefits-list ul {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* 0.75rem = 0.75 * 16px */
+    gap: 12px;
+    margin-bottom: 16px;
   }
 
   .benefit-item {
