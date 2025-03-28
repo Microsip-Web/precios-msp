@@ -161,13 +161,13 @@
   }
 
   .container {
-    margin-bottom: 4rem;
+    margin-bottom: 64px; /* 4rem = 4 * 16px */
   }
 
   .title {
-    font-size: 1.25rem;
+    font-size: 20px; /* 1.25rem = 1.25 * 16px */
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin-bottom: 12px; /* 0.75rem = 0.75 * 16px */
   }
 
   .accent {
@@ -177,7 +177,7 @@
   .plan-grid {
     display: grid;
     grid-template-columns: 1fr; /* Single column on mobile */
-    gap: 1rem;
+    gap: 16px; /* 1rem = 16px */
   }
 
   @media (min-width: 768px) {
@@ -190,7 +190,7 @@
     cursor: pointer;
     border: 1px solid var(--ps-outlined-borders, #e5e7eb);
     border-radius: 20px;
-    padding: 1rem;
+    padding: 16px; /* 1rem = 16px */
     transition: all 0.2s ease;
     position: relative;
   }
@@ -212,11 +212,11 @@
   .plan-button {
     border: 1px solid;
     cursor: pointer;
-    border-radius: 9999px;
-    padding: 0.125rem 0.625rem;
+    border-radius: 12px;
+    padding: 4px 10px; /* 0.125rem 0.625rem = 2px 10px */
     text-transform: uppercase;
     font-weight: 500;
-    /* margin-bottom: 1.5rem; */
+    font-size: 13px;
   }
 
   .active-button {
@@ -238,19 +238,20 @@
   .benefits-list {
     color: var(--ps-text, #374151);
     font-weight: normal;
-    font-size: 0.875rem;
+    font-size: 14px; /* 0.875rem = 0.875 * 16px */
+    margin-top: 12px;
   }
 
   .benefits-list ul {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 12px; /* 0.75rem = 0.75 * 16px */
   }
 
   .benefit-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px; /* 0.5rem = 0.5 * 16px */
   }
 
   .check-mark {
@@ -270,11 +271,11 @@
   }
 
   .tip-badge {
-    background-color: var(--ps-badge-background, #f3f4f6);
-    color: var(--ps-badge-text, #4b5563);
-    padding: 0.125rem 0.625rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
+    background-color: var(--ps-badge-background, #0070f3);
+    color: var(--ps-badge-text, #fff);
+    padding: 4px 10px; /* 0.125rem 0.625rem = 2px 10px */
+    border-radius: 100px;
+    font-size: 14px; /* 0.875rem = 0.875 * 16px */
     font-weight: 500;
   }
 </style>

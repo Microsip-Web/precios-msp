@@ -20,12 +20,6 @@
 </script>
 
 <main class="app-container">
-  <div class="app-header">
-    <h1 class="app-title">
-      Conoce el precio estimado de <span class="app-title-accent">Microsip</span
-      > para tu empresa
-    </h1>
-  </div>
   <PlanSelector {activeView} {setActiveView} />
   <div class="app-description">
     <h2 class="description-title">Selecciona los modulos que necesitas</h2>
@@ -57,68 +51,48 @@
   /* Main container */
   .app-container {
     font-family: "Sora", sans-serif;
-    max-width: 56rem; /* max-w-4xl */
+    max-width: 896px; /* 56rem converted to px */
     margin-left: auto;
     margin-right: auto;
-    padding: 1.25rem; /* p-5 */
-  }
-
-  /* Header section */
-  .app-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 4rem; /* py-16 */
-    padding-bottom: 4rem;
-  }
-
-  .app-title {
-    font-weight: 700; /* font-bold */
-    color: var(--gh-text-black);
-    font-size: 1.875rem; /* text-3xl */
-    line-height: 2.5rem; /* leading-10 */
-  }
-
-  .app-title-accent {
-    color: var(--gh-text-accent);
+    padding: 20px; /* 1.25rem converted to px */
   }
 
   /* Description section */
   .app-description {
-    margin-bottom: 4rem; /* mb-16 */
+    margin-bottom: 64px; /* 4rem converted to px */
   }
 
   .description-title {
     color: var(--gh-text-black);
-    font-size: 1.25rem; /* text-xl */
-    font-weight: 600; /* font-semibold */
-    margin-bottom: 0.75rem; /* mb-3 */
+    font-size: 20px; /* 1.25rem converted to px */
+    font-weight: 600;
+    margin-bottom: 12px; /* 0.75rem converted to px */
   }
 
   .description-text {
     color: var(--gh-text);
-    line-height: 1.75rem; /* leading-7 */
-    font-size: 0.875rem; /* text-sm */
+    line-height: 28px; /* 1.75rem converted to px */
+    font-size: 14px; /* 0.875rem converted to px */
   }
 
   /* Error message */
   .error-message {
     text-align: center;
     color: var(--gh-text-black);
-    font-size: 1.25rem; /* text-xl */
-    font-weight: 600; /* font-semibold */
-    margin-bottom: 0.75rem; /* mb-3 */
+    font-size: 20px; /* 1.25rem converted to px */
+    font-weight: 600;
+    margin-bottom: 12px; /* 0.75rem converted to px */
   }
 
   /* Media queries for responsiveness */
   @media (min-width: 768px) {
     .app-title {
-      font-size: 3rem; /* md:text-5xl */
-      line-height: 4rem; /* md:leading-[64px] */
+      font-size: 55px;
+      line-height: 65px;
     }
 
     .description-text {
-      font-size: 1rem; /* md:text-base */
+      font-size: 16px; /* 1rem converted to px */
     }
   }
 </style>
