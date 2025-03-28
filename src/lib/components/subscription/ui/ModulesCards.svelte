@@ -529,6 +529,12 @@
     --gray-400: #a0aec0;
   }
 
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   /* Module container */
   .modules-container {
     font-family: "Sora", sans-serif;
@@ -662,7 +668,6 @@
   /* Addon card */
   .addon-card {
     font-size: 14px;
-    margin-bottom: 12px;
     padding: 8px;
     border: 1px solid;
     border-radius: 12px;
@@ -741,7 +746,7 @@
   .credencial-input {
     display: flex;
     align-items: center;
-    margin-top: 2px;
+    margin-top: 8px;
   }
 
   .addon-input-label {

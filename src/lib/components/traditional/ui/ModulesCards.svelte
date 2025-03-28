@@ -310,6 +310,12 @@
     --gray-400: #a0aec0;
   }
 
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   /* Module container */
   .modules-container {
     font-family: "Sora", sans-serif;
@@ -336,7 +342,7 @@
   .module-content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
   }
 
   /* Module header */
