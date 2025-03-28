@@ -7,7 +7,7 @@
 
     setActiveView(view);
     // update url with current origin and pathname
-    history.pushState({}, "", `/${view}`);
+    // history.pushState({}, "", `/${view}`);
   };
 
   function togglePlan(view: "traditional" | "subscription") {

@@ -15,7 +15,7 @@
     activeView = "subscription";
 
     // Update URL to reflect default subscription view
-    history.replaceState({}, "", "/subscription");
+    // history.replaceState({}, "", "/subscription");
   });
 </script>
 
@@ -54,7 +54,7 @@
     max-width: 896px; /* 56rem converted to px */
     margin-left: auto;
     margin-right: auto;
-    padding: 20px; /* 1.25rem converted to px */
+    /* padding: 20px; */
   }
 
   /* Description section */
@@ -86,10 +86,10 @@
 
   /* Media queries for responsiveness */
   @media (min-width: 768px) {
-    .app-title {
+    /* .app-title {
       font-size: 55px;
       line-height: 65px;
-    }
+    } */
 
     .description-text {
       font-size: 16px; /* 1rem converted to px */
