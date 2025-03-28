@@ -153,39 +153,40 @@
 
   /* Main container */
   .total-price {
-    padding: 1rem;
-    font-size: 0.875rem;
+    padding: 16px;
+    font-size: 14px;
     color: var(--sm-text);
-    border-radius: 0.75rem;
-    margin-bottom: 1rem;
+    border-radius: 12px;
+    margin-bottom: 16px;
     background-color: var(--sm-background);
   }
 
   /* Payment frequency section */
   .payment-frequency {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.25rem;
+    gap: 4px;
     align-items: center;
   }
 
   .payment-frequency-title {
-    font-size: 0.875rem;
+    font-size: 14px;
     font-weight: 600;
   }
 
   .select-container {
     border-left: 1px solid var(--sm-divider);
-    padding-left: 0.5rem;
+    padding-left: 8px;
   }
 
   .payment-frequency-dropdown {
     width: min-content;
-    font-size: 0.875rem;
-    border-radius: 0.75rem;
+    font-size: 14px;
+    border-radius: 12px;
     border: 1px solid var(--mc-outlined-borders);
-    padding: 0.5rem;
+    background-color: var(--sm-background);
+    padding: 8px;
   }
 
   /* Price breakdown section */
@@ -193,7 +194,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.25rem;
+    margin-bottom: 4px;
   }
 
   /* Discount styling */
@@ -205,35 +206,35 @@
   .monthly-total {
     font-weight: 600;
     border-top: 1px solid var(--sm-divider);
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
+    margin-top: 8px;
+    padding-top: 8px;
   }
 
   /* Frequency multiplier row */
   .frequency-multiplier {
-    font-size: 0.875rem;
+    font-size: 14px;
     color: #718096; /* gray-600 */
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
   }
 
   /* Total row */
   .price-item.total {
     font-weight: bold;
-    padding-top: 0.5rem;
+    padding-top: 8px;
     border-top: 1px solid var(--sm-divider);
-    margin-top: 0.5rem;
+    margin-top: 8px;
   }
 
   /* Footer section */
   .summary-footer {
-    margin-top: 1.5rem;
+    margin-top: 24px;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 8px;
   }
 
   .disclaimer {
-    font-size: 0.75rem;
+    font-size: 12px;
     color: #6b7280; /* gray-500 */
     grid-column: span 2;
   }
@@ -241,7 +242,7 @@
   .action-buttons {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 8px;
     grid-column: span 2;
   }
 
@@ -250,10 +251,10 @@
     cursor: pointer;
     border: 1px solid var(--sm-button-secondary);
     color: var(--sm-text);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 12px;
     text-transform: uppercase;
-    font-size: 0.875rem;
+    font-size: 14px;
   }
 
   .reset-button:hover {
@@ -265,10 +266,10 @@
     cursor: pointer;
     background-color: var(--sm-button-primary);
     color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 12px;
     text-transform: uppercase;
-    font-size: 0.875rem;
+    font-size: 14px;
     border: none;
   }
 
@@ -282,16 +283,16 @@
   /* Media query for larger screens */
   @media (min-width: 768px) {
     .total-price {
-      font-size: 1rem;
+      font-size: 16px;
     }
 
     .payment-frequency {
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 16px;
     }
 
     .payment-frequency-title {
-      font-size: 1rem;
+      font-size: 16px;
     }
 
     .select-container {
@@ -300,9 +301,9 @@
       justify-self: end;
     }
 
-    .payment-frequency-dropdown {
-      font-size: 1rem;
-    }
+    /* .payment-frequency-dropdown {
+      font-size: 16px;
+    } */
 
     .summary-footer {
       grid-template-columns: repeat(4, 1fr);

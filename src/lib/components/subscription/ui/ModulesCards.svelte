@@ -716,6 +716,9 @@
 
   .addon-title {
     max-width: 60%;
+    @media (min-width: 768px) {
+      max-width: 90%;
+    }
     .module-addon-name {
       font-size: 14px;
       font-weight: 400;
