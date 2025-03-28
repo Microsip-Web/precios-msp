@@ -537,10 +537,10 @@
 
   /* Module card */
   .module-card {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     border: 1px solid;
-    border-radius: 0.75rem;
-    padding: 0.5rem;
+    border-radius: 12px;
+    padding: 8px;
   }
 
   .module-card.selected {
@@ -555,7 +555,7 @@
   .module-content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 8px;
   }
 
   /* Module header */
@@ -583,11 +583,11 @@
 
   /* Module image */
   .module-image {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.75rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
     border: 1px solid var(--mc-outlined-borders);
-    margin-right: 0.5rem;
+    margin-right: 8px;
   }
 
   .module-image img {
@@ -599,8 +599,12 @@
   /* Module title */
   .module-title {
     max-width: 60%;
+    @media (min-width: 768px) {
+      max-width: 90%;
+    }
     .module-name {
-      font-size: 0.875rem;
+      font-size: 14px;
+      line-height: 20px;
       font-weight: 400;
       margin: 0;
     }
@@ -614,7 +618,7 @@
   }
 
   .module-price-text {
-    font-size: 0.875rem;
+    font-size: 14px;
   }
 
   .module-price-empty {
@@ -625,7 +629,7 @@
   .select-options {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 8px;
   }
 
   /* Select labels */
@@ -636,10 +640,10 @@
   /* Select dropdowns */
   .module-select-dropdown {
     width: min-content;
-    font-size: 0.875rem;
-    border-radius: 0.75rem;
+    font-size: 14px;
+    border-radius: 12px;
     border: 1px solid var(--mc-outlined-borders);
-    padding: 0.5rem;
+    padding: 8px;
   }
 
   /* Addons container */
@@ -650,18 +654,18 @@
   } */
 
   .addons-title {
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
+    font-size: 14px;
+    margin-bottom: 8px;
     font-weight: 400;
   }
 
   /* Addon card */
   .addon-card {
-    font-size: 0.875rem;
-    margin-bottom: 0.75rem;
-    padding: 0.5rem;
+    font-size: 14px;
+    margin-bottom: 12px;
+    padding: 8px;
     border: 1px solid;
-    border-radius: 0.75rem;
+    border-radius: 12px;
     cursor: pointer;
   }
 
@@ -697,11 +701,11 @@
 
   /* Addon image */
   .addon-image {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 0.75rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
     border: 1px solid var(--mc-outlined-borders);
-    margin-right: 0.5rem;
+    margin-right: 8px;
   }
 
   .addon-image img {
@@ -713,7 +717,7 @@
   .addon-title {
     max-width: 60%;
     .module-addon-name {
-      font-size: 0.875rem;
+      font-size: 14px;
       font-weight: 400;
       margin: 0;
     }
@@ -734,25 +738,25 @@
   .credencial-input {
     display: flex;
     align-items: center;
-    margin-top: 0.1rem;
+    margin-top: 2px;
   }
 
   .addon-input-label {
-    margin-right: 0.5rem;
-    font-size: 0.875rem;
+    margin-right: 8px;
+    font-size: 14px;
   }
 
   .addon-number-input {
-    width: 5rem;
-    border-radius: 0.75rem;
+    width: 80px;
+    border-radius: 12px;
     border: 1px solid var(--mc-outlined-borders);
-    padding: 0.25rem;
-    font-size: 0.875rem;
+    padding: 4px;
+    font-size: 14px;
   }
 
   /* Error message */
   .error-message {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
   }
 
   /* Media queries for responsiveness */

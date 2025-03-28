@@ -318,10 +318,10 @@
 
   /* Module card */
   .module-card {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     border: 1px solid;
-    border-radius: 0.75rem;
-    padding: 0.5rem;
+    border-radius: 12px;
+    padding: 8px;
   }
 
   .module-card.selected {
@@ -336,7 +336,7 @@
   .module-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 16px;
   }
 
   /* Module header */
@@ -364,11 +364,11 @@
 
   /* Module image */
   .module-image {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.75rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
     border: 1px solid var(--mc-outlined-borders);
-    margin-right: 0.5rem;
+    margin-right: 8px;
   }
 
   .module-image img {
@@ -380,8 +380,12 @@
   /* Module title */
   .module-title {
     max-width: 60%;
+    @media (min-width: 768px) {
+      max-width: 90%;
+    }
     .module-name {
-      font-size: 0.875rem;
+      font-size: 14px;
+      line-height: 20px;
       font-weight: 400;
       margin: 0;
     }
@@ -395,7 +399,7 @@
   }
 
   .module-price-text {
-    font-size: 0.875rem;
+    font-size: 14px;
   }
 
   .module-price-empty {
@@ -406,7 +410,7 @@
   .select-options {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 8px;
   }
 
   /* Select labels */
@@ -417,15 +421,15 @@
   /* Select dropdowns */
   .module-select-dropdown {
     width: min-content;
-    font-size: 0.875rem;
-    border-radius: 0.75rem;
+    font-size: 14px;
+    border-radius: 12px;
     border: 1px solid var(--mc-outlined-borders);
-    padding: 0.5rem;
+    padding: 8px;
   }
 
   /* Error message */
   .error-message {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
   }
 
   /* Media queries for responsiveness */
