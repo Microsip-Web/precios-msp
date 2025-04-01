@@ -2,12 +2,17 @@
   export let activeView: "traditional" | "subscription" = "subscription";
   export let setActiveView = (view: "traditional" | "subscription") => {};
 
-  const handleViewChange = (view: "traditional" | "subscription") => {
+ const handleViewChange = (view: "traditional" | "subscription") => {
     if (view === activeView) return; // Don't do anything if the view hasn't changed
 
-    setActiveView(view);
-    // update url with current origin and pathname
-    // history.pushState({}, "", `/${view}`);
+    // Use window.confirm to ask the user
+    if (window.confirm("¿Estás seguro de querer cambiar de plan?, se eliminaran todos los datos de tu cotización actual.")) {
+      // Only update the view and URL if the user confirms
+      setActiveView(view);
+      // update url with current origin and pathname
+      // history.pushState({}, "", `/${view}`);
+    }
+    // Removed the invalid confirm() block and the unconditional setActiveView call
   };
 
   function togglePlan(view: "traditional" | "subscription") {
@@ -48,7 +53,15 @@
       <div class="benefits-list">
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Descuentos especiales por frecuencia de pago</div>
+          <div>Siempre tienes acceso a la última versión Microsip</div>
+        </div>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>No pagas actualizaciones</div>
+        </div>
+        <div class="benefit-item">
+          <div class="check-mark">✓</div>
+          <div>Sin contratos de tiempos forzosos</div>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
@@ -56,15 +69,11 @@
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Siempre tienes acceso a la ultima versión Microsip</div>
+          <div>Acceso a las últimas mejoras y cambios en Microsip</div>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Acceso a las ultimas mejoras y cambios en Microsip</div>
-        </div>
-        <div class="benefit-item">
-          <div class="check-mark">✓</div>
-          <div>No pagas actualizaciones</div>
+          <div>Descuentos especiales por frecuencia de pago</div>
         </div>
       </div>
       <div class="badge-container">
@@ -109,13 +118,13 @@
           <div class="check-mark">✓</div>
           <div>Adaptable al crecimiento de tu negocio</div>
         </div>
-        <div class="benefit-item">
-          <div class="cross-mark">✗</div>
-          <div>Descuentos especiales por frecuencia de pago</div>
-        </div>
-        <div class="benefit-item">
+        <div class="benefit-item disabled">
           <div class="cross-mark">✗</div>
           <div>Acceso a las ultimas mejoras y cambios en Microsip</div>
+        </div>
+        <div class="benefit-item disabled">
+          <div class="cross-mark">✗</div>
+          <div>Descuentos especiales por frecuencia de pago</div>
         </div>
       </div>
     </div>
@@ -123,6 +132,18 @@
 </div>
 
 <style>
+  :root {
+    --accent-color: #FF8623;
+    --text-white: #fff;
+    --text-primary: #000000DE;
+    --text-secondary: #00000099;
+    --text-disabled: #00000061;
+    --border-color-card: #E0E0E0;
+    --border-disabled-button: #00000061;
+    --text-disabled-button: #00000061;
+    --card-background: rgba(255, 134, 35, 0.05);
+  }
+
   * {
     font-family: "Sora", sans-serif;
     box-sizing: border-box;
@@ -141,7 +162,7 @@
   }
 
   .accent {
-    color: var(--ps-accent, #0070f3);
+    color: var(--accent-color);
   }
 
   .plan-grid {
@@ -158,7 +179,7 @@
 
   .plan {
     cursor: pointer;
-    border: 1px solid var(--ps-outlined-borders, #e5e7eb);
+    border: 1px solid var(--border-color-card);
     border-radius: 20px;
     padding: 16px; /* 1rem = 16px */
     transition: all 0.2s ease;
@@ -168,12 +189,12 @@
   }
 
   .plan:hover:not(.active) {
-    border-color: rgba(var(--ps-accent-rgb, 0, 112, 243), 0.5);
+    border-color: var(--accent-color);
   }
 
   .plan.active {
-    border-color: var(--ps-accent, #0070f3);
-    background-color: rgba(var(--ps-accent-rgb, 0, 112, 243), 0.05);
+    border-color: var(--accent-color);
+    background-color: var(--card-background);
   }
 
   .button-container {
@@ -189,29 +210,29 @@
     padding: 4px 10px; /* 0.125rem 0.625rem = 2px 10px */
     text-transform: uppercase;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 16px;
   }
 
   .active-button {
-    border-color: var(--ps-accent, #0070f3);
-    background-color: var(--ps-accent, #0070f3);
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
     color: white;
   }
 
   .inactive-button {
-    border-color: var(--ps-outlined-borders, #e5e7eb);
-    color: var(--ps-text-disabled, #9ca3af);
+    border-color: var(--border-color-card);
+    color: var(--text-disabled);
     background-color: white;
   }
 
   .subscription .plan-button:not(.active-button) {
-    border-color: var(--ps-accent, #0070f3);
-    color: var(--ps-accent, #0070f3);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
     background-color: white;
   }
 
   .benefits-list {
-    color: var(--ps-text, #374151);
+    color: var(--text-secondary);
     font-weight: normal;
     font-size: 14px; /* 0.875rem = 0.875 * 16px */
     display: flex;
@@ -226,12 +247,16 @@
     gap: 8px; /* 0.5rem = 0.5 * 16px */
   }
 
+  .benefit-item.disabled {
+    color: var(--text-disabled);
+  }
+
   .check-mark {
-    color: var(--ps-accent, #0070f3);
+    color: var(--accent-color);
   }
 
   .cross-mark {
-    color: var(--ps-text, #374151);
+    color: var(--text-secondary);
   }
 
   .badge-container {
@@ -243,8 +268,8 @@
   }
 
   .tip-badge {
-    background-color: var(--ps-badge-background, #0070f3);
-    color: var(--ps-badge-text, #fff);
+    background-color: var(--accent-color);
+    color: var(--text-white);
     padding: 4px 10px; /* 0.125rem 0.625rem = 2px 10px */
     border-radius: 100px;
     font-size: 14px; /* 0.875rem = 0.875 * 16px */

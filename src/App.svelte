@@ -24,7 +24,7 @@
   <div class="app-description">
     <h2 class="description-title">Selecciona los modulos que necesitas</h2>
     <p class="description-text">
-      Selecciona uno o más módulos. Para cada módulo, escoge el plan (Básico,
+      Para cada módulo, escoge el plan (Básico,
       Ligero, Pro, Premium o Corporativo). Si es Corporativo, especifica el
       número de usuarios en incrementos de 5 (10 a 50).
     </p>
@@ -47,11 +47,17 @@
     margin: 0;
     padding: 0;
   }
-  /* Temporary color variables - replace with your theme colors later */
+
   :root {
-    --gh-text-black: #1a202c;
-    --gh-text-accent: #3498db;
-    --gh-text: #4a5568;
+    --accent-color: #FF8623;
+    --text-white: #fff;
+    --text-primary: #000000DE;
+    --text-secondary: #00000099;
+    --text-disabled: #00000061;
+    --border-color-card: #E0E0E0;
+    --border-disabled-button: #00000061;
+    --text-disabled-button: #00000061;
+    --card-background: rgba(255, 134, 35, 0.05);
   }
 
   /* Main container */
@@ -69,14 +75,14 @@
   }
 
   .description-title {
-    color: var(--gh-text-black);
+    color: var(--text-primary);
     font-size: 20px; /* 1.25rem converted to px */
     font-weight: 600;
     margin-bottom: 12px; /* 0.75rem converted to px */
   }
 
   .description-text {
-    color: var(--gh-text);
+    color: var(--text-secondary);
     line-height: 28px; /* 1.75rem converted to px */
     font-size: 14px; /* 0.875rem converted to px */
   }
@@ -84,7 +90,7 @@
   /* Error message */
   .error-message {
     text-align: center;
-    color: var(--gh-text-black);
+    color: var(--text-secondary);
     font-size: 20px; /* 1.25rem converted to px */
     font-weight: 600;
     margin-bottom: 12px; /* 0.75rem converted to px */

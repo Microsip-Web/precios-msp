@@ -521,12 +521,17 @@
 </section>
 
 <style>
-  /* Temporary color variables - replace with your theme colors later */
   :root {
-    --mc-text: #2c3e50;
-    --mc-accent: #3498db;
-    --mc-outlined-borders: #e2e8f0;
-    --gray-400: #a0aec0;
+    --accent-color: #FF8623;
+    --text-white: #fff;
+    --text-primary: #000000DE;
+    --text-secondary: #00000099;
+    --text-disabled: #00000061;
+    --border-color-card: #E0E0E0;
+    --border-disabled-button: #00000061;
+    --text-disabled-button: #00000061;
+    --card-background: rgba(255, 134, 35, 0.05);
+    --dropdown-border: #0000003B
   }
 
   * {
@@ -538,7 +543,7 @@
   /* Module container */
   .modules-container {
     font-family: "Sora", sans-serif;
-    color: var(--mc-text);
+    color: var(--text-primary);
   }
 
   /* Module card */
@@ -550,11 +555,11 @@
   }
 
   .module-card.selected {
-    border-color: var(--mc-accent);
+    border-color: var(--accent-color);
   }
 
   .module-card.unselected {
-    border-color: var(--mc-outlined-borders);
+    border-color: var(--border-color-card);
   }
 
   /* Module content */
@@ -592,7 +597,7 @@
     width: 40px;
     height: 40px;
     border-radius: 12px;
-    border: 1px solid var(--mc-outlined-borders);
+    border: 1px solid var(--border-color-card);
     margin-right: 8px;
   }
 
@@ -613,6 +618,7 @@
       line-height: 20px;
       font-weight: 400;
       margin: 0;
+      color: var(--text-secondary);
     }
   }
 
@@ -625,10 +631,11 @@
 
   .module-price-text {
     font-size: 14px;
+    color: var(--text-secondary);
   }
 
   .module-price-empty {
-    color: var(--gray-400);
+    color: var(--text-disabled);
   }
 
   /* Select options */
@@ -648,21 +655,23 @@
     width: min-content;
     font-size: 14px;
     border-radius: 12px;
-    border: 1px solid var(--mc-outlined-borders);
+    border: 1px solid var(--dropdown-border);
     padding: 8px;
+    color: var(--text-secondary);
   }
 
   /* Addons container */
   /* .addons-container {
     margin-top: 1rem;
     padding-left: 0.5rem;
-    border-left: 1px solid var(--mc-outlined-borders);
+    border-left: 1px solid var(--border-color-card);
   } */
 
   .addons-title {
     font-size: 14px;
     margin-bottom: 8px;
     font-weight: 400;
+    color: var(--text-secondary);
   }
 
   /* Addon card */
@@ -675,11 +684,11 @@
   }
 
   .addon-card.selected {
-    border-color: var(--mc-accent);
+    border-color: var(--accent-color);
   }
 
   .addon-card.unselected {
-    border-color: var(--mc-outlined-borders);
+    border-color: var(--border-color-card);
   }
 
   /* Addon header */
@@ -709,7 +718,7 @@
     width: 32px;
     height: 32px;
     border-radius: 12px;
-    border: 1px solid var(--mc-outlined-borders);
+    border: 1px solid var(--border-color-card);
     margin-right: 8px;
   }
 
@@ -728,12 +737,17 @@
       font-size: 14px;
       font-weight: 400;
       margin: 0;
+      color: var(--text-secondary);
     }
   }
 
   /* Addon price */
   .addon-price-empty {
-    color: var(--gray-400);
+    color: var(--text-disabled);
+  }
+
+  .module-addon-price {
+    color: var(--text-secondary);
   }
 
   /* Addon options */
@@ -747,6 +761,7 @@
     display: flex;
     align-items: center;
     margin-top: 8px;
+    color: var(--text-secondary);
   }
 
   .addon-input-label {
@@ -757,7 +772,8 @@
   .addon-number-input {
     width: 80px;
     border-radius: 12px;
-    border: 1px solid var(--mc-outlined-borders);
+    border: 1px solid var(--dropdown-border);
+    color: var(--text-secondary);
     padding: 4px;
     font-size: 14px;
   }

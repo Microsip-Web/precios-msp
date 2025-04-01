@@ -126,7 +126,7 @@
     </small>
     <div class="action-buttons">
       <button class="reset-button" onclick={() => resetEverything()}
-        >Reiniciar cotización</button
+        >Reiniciar</button
       >
       <button class="continue-button" onclick={() => alert("Testing")}
         >Continuar</button
@@ -139,26 +139,31 @@
   * {
     font-family: "Sora", sans-serif;
   }
-  /* Temporary color variables - replace with your theme colors later */
   :root {
-    --sm-text: #2c3e50;
-    --sm-background: #f5f9ff;
-    --sm-accent: #3498db;
-    --sm-divider: #d1e0f5;
-    --sm-button-primary: #2980b9;
-    --sm-button-secondary: #a8c7e9;
-    --sm-button-secondary-hover: #bfd7f2;
-    --mc-outlined-borders: #cbd5e0;
+    --accent-color: #FF8623;
+    --text-white: #fff;
+    --text-primary: #000000DE;
+    --text-secondary: #00000099;
+    --text-disabled: #00000061;
+    --border-color-card: #E0E0E0;
+    --border-disabled-button: #00000061;
+    --text-disabled-button: #00000061;
+    --summary-card-background: #FAFAFC;
+    --dropdown-border: #0000003B;
+    --reset-button-foreground: #636668;
+    --reset-button-background: transparent;
+    --reset-button-border: #20242780;
+    --reset-button-hover-background: #2024270A;
   }
 
   /* Main container */
   .total-price {
     padding: 16px;
     font-size: 14px;
-    color: var(--sm-text);
+    color: var(--text-secondary);
     border-radius: 12px;
     margin-bottom: 16px;
-    background-color: var(--sm-background);
+    background-color: var(--summary-card-background);
   }
 
   /* Payment frequency section */
@@ -176,7 +181,7 @@
   }
 
   .select-container {
-    border-left: 1px solid var(--sm-divider);
+    border-left: 1px solid var(--dropdown-border);
     padding-left: 8px;
   }
 
@@ -184,9 +189,10 @@
     width: min-content;
     font-size: 14px;
     border-radius: 12px;
-    border: 1px solid var(--mc-outlined-borders);
-    background-color: var(--sm-background);
+    border: 1px solid var(--dropdown-border);
+    background-color: transparent;
     padding: 8px;
+    color: var(--text-secondary);
   }
 
   /* Price breakdown section */
@@ -199,13 +205,13 @@
 
   /* Discount styling */
   .discount {
-    color: var(--sm-accent);
+    color: var(--accent-color);
   }
 
   /* Monthly total row */
   .monthly-total {
     font-weight: 600;
-    border-top: 1px solid var(--sm-divider);
+    border-top: 1px solid var(--dropdown-border);
     margin-top: 8px;
     padding-top: 8px;
   }
@@ -213,7 +219,7 @@
   /* Frequency multiplier row */
   .frequency-multiplier {
     font-size: 14px;
-    color: #718096; /* gray-600 */
+    color: var(--text-secondary);
     margin-bottom: 8px;
   }
 
@@ -221,7 +227,7 @@
   .price-item.total {
     font-weight: bold;
     padding-top: 8px;
-    border-top: 1px solid var(--sm-divider);
+    border-top: 1px solid var(--dropdown-border);
     margin-top: 8px;
   }
 
@@ -235,7 +241,7 @@
 
   .disclaimer {
     font-size: 12px;
-    color: #6b7280; /* gray-500 */
+    color: var(--text-secondary);
     grid-column: span 2;
   }
 
@@ -249,24 +255,25 @@
   /* Buttons */
   .reset-button {
     cursor: pointer;
-    border: 1px solid var(--sm-button-secondary);
-    color: var(--sm-text);
-    padding: 4px 8px;
+    border: 1px solid var(--reset-button-border);
+    color: var(--reset-button-foreground);
+    padding: 8px;
     border-radius: 12px;
     text-transform: uppercase;
     font-size: 14px;
   }
 
   .reset-button:hover {
-    background-color: var(--sm-button-secondary-hover);
+    background-color: var(--reset-button-hover-background);
+    border: 1px solid var(--reset-button-hover-border);
     transition: background-color 0.3s;
   }
 
   .continue-button {
     cursor: pointer;
-    background-color: var(--sm-button-primary);
-    color: white;
-    padding: 4px 8px;
+    background-color: var(--accent-color);
+    color: var(--text-white);
+    padding: 8px;
     border-radius: 12px;
     text-transform: uppercase;
     font-size: 14px;
