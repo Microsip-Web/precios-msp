@@ -155,6 +155,7 @@
     cursor: pointer;
     border: 1px solid var(--reset-button-border);
     color: var(--reset-button-foreground);
+    background: transparent;
     padding: 8px;
     border-radius: 12px;
     text-transform: uppercase;
