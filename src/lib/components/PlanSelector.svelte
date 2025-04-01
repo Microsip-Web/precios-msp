@@ -53,27 +53,27 @@
       <div class="benefits-list">
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Siempre tienes acceso a la última versión Microsip</div>
+          <p>Siempre tienes acceso a la última versión Microsip</p>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>No pagas actualizaciones</div>
+          <p>No pagas actualizaciones</p>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Sin contratos de tiempos forzosos</div>
+          <p>Sin contratos de tiempos forzosos</p>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Ajusta y modifica módulos y usuarios en cualquier momento</div>
+          <p>Ajusta y modifica módulos y usuarios en cualquier momento</p>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Acceso a las últimas mejoras y cambios en Microsip</div>
+          <p>Acceso a las últimas mejoras y cambios en Microsip</p>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Descuentos especiales por frecuencia de pago</div>
+          <p>Descuentos especiales por frecuencia de pago</p>
         </div>
       </div>
       <div class="badge-container">
@@ -104,27 +104,27 @@
       <div class="benefits-list">
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Paga por la ultima versión año con año</div>
+          <p>Paga por la ultima versión año con año</p>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Adquiere la versión actual en un solo pago</div>
+          <p>Adquiere la versión actual en un solo pago</p>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Sin contratos de tiempos forzosos</div>
+          <p>Sin contratos de tiempos forzosos</p>
         </div>
         <div class="benefit-item">
           <div class="check-mark">✓</div>
-          <div>Adaptable al crecimiento de tu negocio</div>
+          <p>Adaptable al crecimiento de tu negocio</p>
         </div>
         <div class="benefit-item disabled">
           <div class="cross-mark">✗</div>
-          <div>Acceso a las ultimas mejoras y cambios en Microsip</div>
+          <p>Acceso a las ultimas mejoras y cambios en Microsip</p>
         </div>
         <div class="benefit-item disabled">
           <div class="cross-mark">✗</div>
-          <div>Descuentos especiales por frecuencia de pago</div>
+          <p>Descuentos especiales por frecuencia de pago</p>
         </div>
       </div>
     </div>
@@ -245,6 +245,9 @@
     display: flex;
     align-items: center;
     gap: 8px; /* 0.5rem = 0.5 * 16px */
+    p {
+      line-height: 20px;
+    }
   }
 
   .benefit-item.disabled {

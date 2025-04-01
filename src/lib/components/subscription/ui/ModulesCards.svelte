@@ -609,7 +609,7 @@
 
   /* Module title */
   .module-title {
-    max-width: 60%;
+    max-width: 80%;
     @media (min-width: 768px) {
       max-width: 90%;
     }
@@ -658,6 +658,7 @@
     border: 1px solid var(--dropdown-border);
     padding: 8px;
     color: var(--text-secondary);
+    background: transparent;
   }
 
   /* Addons container */

@@ -139,6 +139,7 @@
 
   .disclaimer {
     font-size: 12px;
+    line-height: 16px;
     color: var(--text-secondary);
     grid-column: span 2;
   }
