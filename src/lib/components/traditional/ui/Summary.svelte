@@ -2,7 +2,11 @@
   // Import necessary types if needed
 
   // Define props that will be passed from ModulesCards
-  let { pricingDetails, resetEverything } = $props<{
+  let {
+    pricingDetails,
+    resetEverything,
+    hasSelections = false,
+  } = $props<{
     pricingDetails: {
       modulesTotal: number;
       addonsTotal: number;
@@ -15,6 +19,7 @@
       eligibleModulesCount: number;
     };
     resetEverything: () => void;
+    hasSelections?: boolean;
   }>();
 </script>
 
@@ -60,11 +65,21 @@
       de instalación, ni PDA. Precios en Pesos Mexicanos.
     </small>
     <div class="action-buttons">
-      <button class="reset-button" onclick={() => resetEverything()}
-        >Reiniciar</button
+      <button
+        class="reset-button"
+        onclick={() => resetEverything()}
+        disabled={!hasSelections}
+        class:disabled={!hasSelections}>Reiniciar</button
       >
-      <button class="continue-button" onclick={() => alert("Testing")}
-        >Continuar</button
+      <button
+        class="continue-button"
+        onclick={() => {
+          document.getElementById("form-container")?.scrollIntoView({
+            behavior: "smooth",
+          });
+        }}
+        disabled={!hasSelections}
+        class:disabled={!hasSelections}>Continuar</button
       >
     </div>
   </div>
@@ -76,20 +91,20 @@
   }
 
   :root {
-    --accent-color: #FF8623;
+    --accent-color: #ff8623;
     --text-white: #fff;
-    --text-primary: #000000DE;
+    --text-primary: #000000de;
     --text-secondary: #00000099;
     --text-disabled: #00000061;
-    --border-color-card: #E0E0E0;
+    --border-color-card: #e0e0e0;
     --border-disabled-button: #00000061;
     --text-disabled-button: #00000061;
-    --summary-card-background: #FAFAFC;
-    --dropdown-border: #0000003B;
+    --summary-card-background: #fafafc;
+    --dropdown-border: #0000003b;
     --reset-button-foreground: #636668;
     --reset-button-background: transparent;
     --reset-button-border: #20242780;
-    --reset-button-hover-background: #2024270A;
+    --reset-button-hover-background: #2024270a;
   }
 
   /* Main container */
@@ -199,6 +214,27 @@
     .action-buttons {
       grid-template-columns: 1fr 1fr;
       grid-column: span 2;
+    }
+  }
+
+  /* Add styles for disabled buttons */
+  .reset-button.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: var(--text-disabled-button);
+    border-color: var(--border-disabled-button);
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .continue-button.disabled {
+    cursor: not-allowed;
+    color: #00000061;
+    background-color: #0000001F;
+    opacity: 0.5;
+    &:hover {
+      box-shadow: none;
     }
   }
 </style>

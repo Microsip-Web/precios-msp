@@ -32,6 +32,12 @@
   // Derived variable to calculate total price of all modules and addons
   let pricingDetails = $derived(calculateTotalPrice());
 
+  // Add a derived value to track if any modules or addons are selected
+  let hasSelections = $derived(
+    Object.values(selectedModules).some((module) => module.selected) ||
+      Object.values(selectedAddons).some((addon) => addon.selected)
+  );
+
   // Helper function to calculate total price before applying discounts
   function calculateTotalPrice() {
     let modulesTotal = 0;
@@ -517,21 +523,26 @@
   {/if}
 
   <!-- {@render summary()} -->
-  <Summary {pricingDetails} bind:paymentFrequency {resetEverything} />
+  <Summary
+    {pricingDetails}
+    bind:paymentFrequency
+    {resetEverything}
+    {hasSelections}
+  />
 </section>
 
 <style>
   :root {
-    --accent-color: #FF8623;
+    --accent-color: #ff8623;
     --text-white: #fff;
-    --text-primary: #000000DE;
+    --text-primary: #000000de;
     --text-secondary: #00000099;
     --text-disabled: #00000061;
-    --border-color-card: #E0E0E0;
+    --border-color-card: #e0e0e0;
     --border-disabled-button: #00000061;
     --text-disabled-button: #00000061;
     --card-background: rgba(255, 134, 35, 0.05);
-    --dropdown-border: #0000003B
+    --dropdown-border: #0000003b;
   }
 
   * {
@@ -730,12 +741,13 @@
   }
 
   .addon-title {
-    max-width: 60%;
+    max-width: 80%;
     @media (min-width: 768px) {
       max-width: 90%;
     }
     .module-addon-name {
       font-size: 14px;
+      line-height: 20px;
       font-weight: 400;
       margin: 0;
       color: var(--text-secondary);

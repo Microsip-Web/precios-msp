@@ -17,6 +17,11 @@
   // Derived variable to calculate total price of all modules
   let pricingDetails = $derived(calculateTotalPrice());
 
+  // Add a derived value to track if any modules are selected
+  let hasSelections = $derived(
+    Object.values(selectedModules).some((module) => module.selected)
+  );
+
   // Helper function to calculate total price before applying discounts
   function calculateTotalPrice() {
     let modulesTotal = 0;
@@ -298,21 +303,21 @@
   {/if}
 
   <!-- {@render summary()} -->
-  <Summary {pricingDetails} {resetEverything} />
+  <Summary {pricingDetails} {resetEverything} {hasSelections} />
 </section>
 
 <style>
   :root {
-    --accent-color: #FF8623;
+    --accent-color: #ff8623;
     --text-white: #fff;
-    --text-primary: #000000DE;
+    --text-primary: #000000de;
     --text-secondary: #00000099;
     --text-disabled: #00000061;
-    --border-color-card: #E0E0E0;
+    --border-color-card: #e0e0e0;
     --border-disabled-button: #00000061;
     --text-disabled-button: #00000061;
     --card-background: rgba(255, 134, 35, 0.05);
-    --dropdown-border: #0000003B
+    --dropdown-border: #0000003b;
   }
 
   * {

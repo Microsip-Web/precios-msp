@@ -1,18 +1,73 @@
 <script lang="ts">
-  export let activeView: "traditional" | "subscription" = "subscription";
-  export let setActiveView = (view: "traditional" | "subscription") => {};
+  let {
+    activeView = "subscription",
+    setActiveView = (view: "traditional" | "subscription") => {}
+  } = $props<{
+    activeView?: "traditional" | "subscription",
+    setActiveView?: (view: "traditional" | "subscription") => void
+  }>();
 
- const handleViewChange = (view: "traditional" | "subscription") => {
+  let hasCheckedItems = $state(false);
+
+  // Reactive function to check for checked checkboxes
+  function updateCheckedItemsState() {
+    const checkedItems = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    );
+    hasCheckedItems = checkedItems.length > 0;
+  }
+
+  // Set up an effect to track checkboxes when component mounts
+  $effect(() => {
+    // Initial check
+    updateCheckedItemsState();
+
+    // Set up MutationObserver to watch for changes to checkboxes
+    const observer = new MutationObserver(() => {
+      updateCheckedItemsState();
+    });
+
+    // Watch the entire document for changes to input elements
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      attributeFilter: ['checked']
+    });
+
+    // Add event listener for checkbox changes
+    document.body.addEventListener('change', (e) => {
+      if (e.target instanceof HTMLInputElement && e.target.type === 'checkbox') {
+        updateCheckedItemsState();
+      }
+    });
+
+    // Cleanup when component is destroyed
+    return () => {
+      observer.disconnect();
+      document.body.removeEventListener('change', updateCheckedItemsState);
+    };
+  });
+
+  const handleViewChange = (view: "traditional" | "subscription") => {
     if (view === activeView) return; // Don't do anything if the view hasn't changed
 
-    // Use window.confirm to ask the user
-    if (window.confirm("¿Estás seguro de querer cambiar de plan?, se eliminaran todos los datos de tu cotización actual.")) {
-      // Only update the view and URL if the user confirms
+    // Check if there are any checked items
+    if (hasCheckedItems) {
+      // If there are checked items, show the confirmation
+      if (
+        window.confirm(
+          "¿Estás seguro de querer cambiar de plan?, se eliminaran todos los datos de tu cotización actual."
+        )
+      ) {
+        // Only update the view if the user confirms
+        setActiveView(view);
+      }
+      // If user cancels the confirm dialog, do nothing.
+    } else {
+      // If there are no checked items, change the view directly without confirmation
       setActiveView(view);
-      // update url with current origin and pathname
-      // history.pushState({}, "", `/${view}`);
     }
-    // Removed the invalid confirm() block and the unconditional setActiveView call
   };
 
   function togglePlan(view: "traditional" | "subscription") {
@@ -133,12 +188,12 @@
 
 <style>
   :root {
-    --accent-color: #FF8623;
+    --accent-color: #ff8623;
     --text-white: #fff;
-    --text-primary: #000000DE;
+    --text-primary: #000000de;
     --text-secondary: #00000099;
     --text-disabled: #00000061;
-    --border-color-card: #E0E0E0;
+    --border-color-card: #e0e0e0;
     --border-disabled-button: #00000061;
     --text-disabled-button: #00000061;
     --card-background: rgba(255, 134, 35, 0.05);

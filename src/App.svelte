@@ -4,7 +4,7 @@
   import TraditionalModules from "./lib/components/traditional/ui/TraditionalModules.svelte";
   import { onMount } from "svelte";
 
-  let activeView: "traditional" | "subscription" = "subscription";
+  let activeView = $state<"traditional" | "subscription">("subscription");
 
   const setActiveView = (view: "traditional" | "subscription") => {
     activeView = view;
@@ -37,6 +37,10 @@
   {:else}
     <div class="error-message">Ha ocurrido un error al cargar los módulos</div>
   {/if}
+
+  <section class="form-container" id="form-container">
+    <h2>Area del formulario</h2>
+  </section>
 </main>
 
 <style>
@@ -95,6 +99,20 @@
     font-weight: 600;
     margin-bottom: 12px; /* 0.75rem converted to px */
   }
+
+  .form-container {
+    display: grid;
+    grid-template-columns: auto;
+    place-items: center;
+    border: 1px solid red;
+    margin-top: 64px;
+    height: 80svh;
+    margin-bottom: 64px;
+  }
+
+  #form-container {
+  scroll-margin-top: 2rem; /* Adjust this value as needed */
+}
 
   /* Media queries for responsiveness */
   @media (min-width: 768px) {

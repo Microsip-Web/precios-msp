@@ -6,6 +6,7 @@
     pricingDetails,
     paymentFrequency = $bindable(),
     resetEverything,
+    hasSelections = false,
   } = $props<{
     pricingDetails: {
       modulesTotal: number;
@@ -22,6 +23,7 @@
     };
     paymentFrequency: "monthly" | "semester" | "annual";
     resetEverything: () => void;
+    hasSelections?: boolean;
   }>();
 </script>
 
@@ -125,11 +127,21 @@
       de instalación, ni PDA. Precios en Pesos Mexicanos.
     </small>
     <div class="action-buttons">
-      <button class="reset-button" onclick={() => resetEverything()}
-        >Reiniciar</button
+      <button
+        class="reset-button"
+        onclick={() => resetEverything()}
+        disabled={!hasSelections}
+        class:disabled={!hasSelections}>Reiniciar</button
       >
-      <button class="continue-button" onclick={() => alert("Testing")}
-        >Continuar</button
+      <button
+        class="continue-button"
+        onclick={() => {
+          document.getElementById("form-container")?.scrollIntoView({
+            behavior: "smooth",
+          });
+        }}
+        disabled={!hasSelections}
+        class:disabled={!hasSelections}>Continuar</button
       >
     </div>
   </div>
@@ -140,20 +152,20 @@
     font-family: "Sora", sans-serif;
   }
   :root {
-    --accent-color: #FF8623;
+    --accent-color: #ff8623;
     --text-white: #fff;
-    --text-primary: #000000DE;
+    --text-primary: #000000de;
     --text-secondary: #00000099;
     --text-disabled: #00000061;
-    --border-color-card: #E0E0E0;
+    --border-color-card: #e0e0e0;
     --border-disabled-button: #00000061;
     --text-disabled-button: #00000061;
-    --summary-card-background: #FAFAFC;
-    --dropdown-border: #0000003B;
+    --summary-card-background: #fafafc;
+    --dropdown-border: #0000003b;
     --reset-button-foreground: #636668;
     --reset-button-background: transparent;
     --reset-button-border: #20242780;
-    --reset-button-hover-background: #2024270A;
+    --reset-button-hover-background: #2024270a;
   }
 
   /* Main container */
@@ -286,6 +298,27 @@
       0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
     transition: all 0.3s;
+  }
+
+  /* Add disabled button styles */
+  .reset-button.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: var(--text-disabled-button);
+    border-color: var(--border-disabled-button);
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .continue-button.disabled {
+    cursor: not-allowed;
+    color: #00000061;
+    background-color: #0000001F;
+    opacity: 0.5;
+    &:hover {
+      box-shadow: none;
+    }
   }
 
   /* Media query for larger screens */
