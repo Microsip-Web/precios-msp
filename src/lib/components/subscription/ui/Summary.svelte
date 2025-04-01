@@ -265,7 +265,6 @@
 
   .reset-button:hover {
     background-color: var(--reset-button-hover-background);
-    border: 1px solid var(--reset-button-hover-border);
     transition: background-color 0.3s;
   }
 

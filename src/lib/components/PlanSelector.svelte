@@ -207,7 +207,7 @@
     border: 1px solid;
     cursor: pointer;
     border-radius: 12px;
-    padding: 4px 10px; /* 0.125rem 0.625rem = 2px 10px */
+    padding: 8px 14px; /* 0.125rem 0.625rem = 2px 10px */
     text-transform: uppercase;
     font-weight: 500;
     font-size: 16px;
@@ -270,7 +270,7 @@
   .tip-badge {
     background-color: var(--accent-color);
     color: var(--text-white);
-    padding: 4px 10px; /* 0.125rem 0.625rem = 2px 10px */
+    padding: 6px 12px; /* 0.125rem 0.625rem = 2px 10px */
     border-radius: 100px;
     font-size: 14px; /* 0.875rem = 0.875 * 16px */
     font-weight: 500;
