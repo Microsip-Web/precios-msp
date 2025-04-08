@@ -38,9 +38,9 @@
     <div class="error-message">Ha ocurrido un error al cargar los módulos</div>
   {/if}
 
-  <section class="form-container" id="form-container">
+  <!-- <section class="form-container" id="form-container">
     <h2>Area del formulario</h2>
-  </section>
+  </section> -->
 </main>
 
 <style>
@@ -100,7 +100,7 @@
     margin-bottom: 12px; /* 0.75rem converted to px */
   }
 
-  .form-container {
+  /* .form-container {
     display: grid;
     grid-template-columns: auto;
     place-items: center;
@@ -108,11 +108,11 @@
     margin-top: 64px;
     height: 80svh;
     margin-bottom: 64px;
-  }
+  } */
 
-  #form-container {
-  scroll-margin-top: 2rem; /* Adjust this value as needed */
-}
+  /* #form-container {
+  scroll-margin-top: 2rem;
+  } */
 
   /* Media queries for responsiveness */
   @media (min-width: 768px) {
