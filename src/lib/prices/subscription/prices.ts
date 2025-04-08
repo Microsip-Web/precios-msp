@@ -38,7 +38,7 @@ export const subscriptionModulesAndPrices: Module[] = [
       {
         parent: "Bancos",
         name: "Movimientos Bancarios",
-        img: "https://cdn.prod.website-files.com/627983ccef617d453b9485ad/671bdc3d6b63dc4ce39fe6a5_Bancos.png",
+        img: "https://cdn.prod.website-files.com/627983ccef617d453b9485ad/67f54fcba7c15ac6753e3040_Movimientos%20Bancarios%20(1).png",
         price: 400,
       },
     ],
@@ -66,7 +66,7 @@ export const subscriptionModulesAndPrices: Module[] = [
       {
         parent: "Inventarios",
         name: "SICS",
-        img: "https://cdn.prod.website-files.com/627983ccef617d453b9485ad/671bdc3f8034bdabc471b5fb_Inventarios.png",
+        img: "https://cdn.prod.website-files.com/627983ccef617d453b9485ad/671bdc3c3b9badabf4f745ee_SICS.png",
         price: 260,
       },
     ],
@@ -114,7 +114,7 @@ export const subscriptionModulesAndPrices: Module[] = [
       {
         parent: "Punto de venta",
         name: "Facturador en línea",
-        img: "https://cdn.prod.website-files.com/627983ccef617d453b9485ad/671bdc403ea3ffa471a1f91f_PDV.png",
+        img: "https://cdn.prod.website-files.com/627983ccef617d453b9485ad/67f54fcb3be4a4c7da4064da_Facturador%20en%20Linea%20(1).png",
         price: 1000,
       },
     ],
