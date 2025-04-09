@@ -22,7 +22,7 @@
 <main class="app-container">
   <PlanSelector {activeView} {setActiveView} />
   <div class="app-description">
-    <h2 class="description-title">Selecciona los modulos que necesitas</h2>
+    <h2 class="description-title">Selecciona los módulos que necesitas</h2>
     <p class="description-text">
       Para cada módulo, escoge el plan (Básico,
       Ligero, Pro, Premium o Corporativo). Si es Corporativo, especifica el

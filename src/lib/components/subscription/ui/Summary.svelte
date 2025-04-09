@@ -141,7 +141,7 @@
           });
         }}
         disabled={!hasSelections}
-        class:disabled={!hasSelections}>Continuar</button
+        class:disabled={!hasSelections}>Siguiente</button
       >
     </div>
   </div>
