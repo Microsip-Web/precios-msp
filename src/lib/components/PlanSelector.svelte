@@ -80,7 +80,7 @@
 </script>
 
 <div class="container">
-  <h2 class="title">
+  <h2 class="plan-selector-title">
     Escoge el plan que mas <span class="accent">adapte</span> a tu empresa
   </h2>
   <div class="plan-grid">
@@ -210,7 +210,7 @@
     margin-bottom: 64px; /* 4rem = 4 * 16px */
   }
 
-  .title {
+  .plan-selector-title {
     font-size: 20px; /* 1.25rem = 1.25 * 16px */
     font-weight: 600;
     margin-bottom: 12px; /* 0.75rem = 0.75 * 16px */
