@@ -38,6 +38,11 @@
     <div class="error-message">Ha ocurrido un error al cargar los módulos</div>
   {/if}
 
+  <div class="link-precios">
+    <a href="https://cdn.prod.website-files.com/62ebdd458759bdb749120f22/66c4bf5d0060781cb0c2df40_Listas%20de%20precios%202024_ajuste_14_Ago.pdf" target="_blank">Descargar lista de precios</a>
+    <a href="https://www.microsip.com/promociones" target="_blank">Promociones</a>
+  </div>
+
   <!-- <section class="form-container" id="form-container">
     <h2>Area del formulario</h2>
   </section> -->
@@ -62,14 +67,17 @@
     --border-disabled-button: #00000061;
     --text-disabled-button: #00000061;
     --card-background: rgba(255, 134, 35, 0.05);
+    --link-color: #00000061;
   }
 
   /* Main container */
   .app-container {
     font-family: "Sora", sans-serif;
-    max-width: 896px; /* 56rem converted to px */
+    /*
+    max-width: 896px;
     margin-left: auto;
     margin-right: auto;
+    */
     /* padding: 20px; */
   }
 
@@ -82,13 +90,15 @@
     color: var(--text-primary);
     font-size: 20px; /* 1.25rem converted to px */
     font-weight: 600;
-    margin-bottom: 12px; /* 0.75rem converted to px */
+    margin-top: 0;
+    margin-bottom: 8px;
   }
 
   .description-text {
     color: var(--text-secondary);
     line-height: 28px; /* 1.75rem converted to px */
     font-size: 14px; /* 0.875rem converted to px */
+    margin: 0;
   }
 
   /* Error message */
@@ -114,6 +124,23 @@
   scroll-margin-top: 2rem;
   } */
 
+  .link-precios {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    a {
+      color: var(--link-color);
+      text-decoration: underline;
+      font-size: 14px;
+      font-weight: 300;
+      transition: color 0.3s ease;
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+  }
+
   /* Media queries for responsiveness */
   @media (min-width: 768px) {
     /* .app-title {
@@ -123,6 +150,11 @@
 
     .description-text {
       font-size: 16px; /* 1rem converted to px */
+    }
+
+    .link-precios {
+      flex-direction: row;
+
     }
   }
 </style>
