@@ -89,12 +89,12 @@
       </div>
     {/if}
 
-    <div class="price-item monthly-total">
+    <!-- <div class="price-item monthly-total">
       <span class="price-breakdown-title">Total Mensual:</span>
       <span class="price-breakdown-total"
         >${pricingDetails.monthlyTotal.toLocaleString("es-MX")}</span
       >
-    </div>
+    </div> -->
 
     {#if paymentFrequency !== "monthly"}
       <div class="price-item frequency-multiplier">
@@ -221,12 +221,12 @@
   }
 
   /* Monthly total row */
-  .monthly-total {
+  /* .monthly-total {
     font-weight: 600;
     border-top: 1px solid var(--dropdown-border);
     margin-top: 8px;
     padding-top: 8px;
-  }
+  } */
 
   /* Frequency multiplier row */
   .frequency-multiplier {
