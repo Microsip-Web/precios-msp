@@ -223,12 +223,13 @@
   .plan-grid {
     display: grid;
     grid-template-columns: 1fr; /* Single column on mobile */
-    gap: 16px; /* 1rem = 16px */
+    gap: 24px; /* 1rem = 16px */
   }
 
   @media (min-width: 768px) {
     .plan-grid {
       grid-template-columns: 1fr 1fr; /* Two columns on tablet and up */
+      gap: 16px;
     }
   }
 
