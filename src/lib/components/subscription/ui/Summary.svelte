@@ -125,6 +125,8 @@
     <small class="disclaimer">
       Este total es una estimación de precio en un solo PDA, no incluye costos
       de instalación, ni PDA. Precios en Pesos Mexicanos.
+      <br />
+      No incluye IVA.
     </small>
     <div class="action-buttons">
       <button
