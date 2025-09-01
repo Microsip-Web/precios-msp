@@ -109,7 +109,7 @@ export const subscriptionModulesAndPrices: Module[] = [
     pro: 693,
     premium: 1108,
     corporate: 1953,
-    corporateIncrement: 1202,
+    corporateIncrement: 1102,
     addon: [
       {
         parent: "Punto de venta",
