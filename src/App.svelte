@@ -4,23 +4,23 @@
   import TraditionalModules from "./lib/components/traditional/ui/TraditionalModules.svelte";
   import { onMount } from "svelte";
 
-  let activeView = $state<"traditional" | "subscription">("subscription");
+  // let activeView = $state<"traditional" | "subscription">("subscription");
 
-  const setActiveView = (view: "traditional" | "subscription") => {
-    activeView = view;
-  };
+  // const setActiveView = (view: "traditional" | "subscription") => {
+  //   activeView = view;
+  // };
 
-  onMount(() => {
-    // Always set the default view to subscription
-    activeView = "subscription";
+  // onMount(() => {
+  //   // Always set the default view to subscription
+  //   activeView = "subscription";
 
-    // Update URL to reflect default subscription view
-    // history.replaceState({}, "", "/subscription");
-  });
+  //   // Update URL to reflect default subscription view
+  //   // history.replaceState({}, "", "/subscription");
+  // });
 </script>
 
 <main class="app-container">
-  <PlanSelector {activeView} {setActiveView} />
+  <!-- <PlanSelector {activeView} {setActiveView} /> -->
   <div class="app-description">
     <h2 class="description-title">Selecciona los módulos que necesitas</h2>
     <p class="description-text">
@@ -30,13 +30,14 @@
     </p>
   </div>
 
-  {#if activeView === "subscription"}
+  <SubscriptionModules />
+  <!-- {#if activeView === "subscription"}
     <SubscriptionModules />
   {:else if activeView === "traditional"}
     <TraditionalModules />
   {:else}
     <div class="error-message">Ha ocurrido un error al cargar los módulos</div>
-  {/if}
+  {/if} -->
 
   <div class="link-precios">
     <a href="https://cdn.prod.website-files.com/627983ccef617d453b9485ad/68b5a8352b6bfd4b627dfc0d_Lista%20de%20precios_%202025microsip.pdf" target="_blank">Descargar lista de precios</a>

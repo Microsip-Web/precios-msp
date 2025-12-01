@@ -29,6 +29,40 @@
   // Payment frequency selection: monthly, semester, annual
   let paymentFrequency = $state<"monthly" | "semester" | "annual">("monthly");
 
+  type SelectedModuleAddon = { name: string; quantity: number; price: number };
+  type SelectedModuleSummary = {
+    name: string;
+    plan: string;
+    users: number;
+    price: number;
+    addons: SelectedModuleAddon[];
+  };
+
+  let selectedModuleSummaries = $derived<SelectedModuleSummary[]>(
+  Object.entries(selectedModules)
+    .filter(([, cfg]) => cfg.selected)
+    .map(([name, cfg]) => {
+      const moduleData = subscriptionModulesAndPrices.find((m) => m.name === name);
+      const basePrice = moduleData ? calculatePrice(moduleData, cfg.plan, cfg.users) : 0;
+
+      const addons =
+        moduleData?.addon
+          ?.flatMap<SelectedModuleAddon>((addon) => {
+            const state = selectedAddons[addon.name];
+            if (!state?.selected) return [];
+            const quantity =
+              addon.name === "SICS"
+                ? state.sucursales ?? 1
+                : addon.name === "Movimientos Bancarios"
+                  ? state.credencial ?? 1
+                  : 1;
+            return [{ name: addon.name, quantity, price: addon.price * quantity }];
+          }) ?? [];
+
+      return { name, plan: cfg.plan, users: cfg.users, price: basePrice, addons };
+    })
+);
+
   // Derived variable to calculate total price of all modules and addons
   let pricingDetails = $derived(calculateTotalPrice());
 
@@ -189,15 +223,16 @@
     module: (typeof subscriptionModulesAndPrices)[number],
     plan: string,
     users: number
-  ) {
+  ): number {
     if (plan == "corporate") {
       // for corporate plans, calculate based on users
       const baseUsers = 10;
       const additionalUsers = Math.max(0, (users - baseUsers) / 5);
       return module.corporate + additionalUsers * module.corporateIncrement;
     } else {
-      // for other plans, simply return the price
-      return module[plan as keyof typeof module] || 0;
+      // for other plans, ensure we always return a number
+      const price = module[plan as keyof typeof module];
+      return typeof price === "number" ? price : Number(price ?? 0);
     }
   }
 
@@ -528,6 +563,7 @@
     bind:paymentFrequency
     {resetEverything}
     {hasSelections}
+    selectedModules={selectedModuleSummaries}
   />
 </section>
 

@@ -7,6 +7,7 @@
     paymentFrequency = $bindable(),
     resetEverything,
     hasSelections = false,
+    selectedModules = [],
   } = $props<{
     pricingDetails: {
       modulesTotal: number;
@@ -24,8 +25,61 @@
     paymentFrequency: "monthly" | "semester" | "annual";
     resetEverything: () => void;
     hasSelections?: boolean;
+    selectedModules?: {
+      name: string;
+      plan: string;
+      users: number;
+      price: number;
+      addons?: { name: string; quantity: number; price: number }[];
+    }[];
   }>();
+
+  const planLabels: Record<string, string> = {
+    basic: "Básico",
+    light: "Ligero",
+    pro: "Pro",
+    premium: "Premium",
+    corporate: "Corporativo",
+  };
 </script>
+
+{#if selectedModules.length}
+  <div class="selected-modules">
+    <div class="selected-header">
+      <h3 class="selected-title">Seleccionados</h3>
+      <span class="selected-count">{selectedModules.length}</span>
+    </div>
+    {#each selectedModules as module}
+      <div class="selected-row">
+        <div class="module-details">
+          <div class="module-header">
+            <div class="module-name">{module.name}</div>
+            <span class="module-plan"
+              >Plan {planLabels[module.plan] ?? module.plan}</span
+            >
+          </div>
+          {#if module.plan === "corporate"}
+            <div class="module-meta">{module.users} usuarios</div>
+          {/if}
+          {#if module.addons?.length}
+            <div class="module-addons">
+              {#each module.addons as addon}
+                <div class="addon-line">
+                  <span>{addon.name}</span>
+                  <span>x{addon.quantity}</span>
+                  <span>${addon.price.toLocaleString("es-MX")}</span>
+                </div>
+              {/each}
+            </div>
+          {/if}
+        </div>
+        <div class="module-price">
+          ${module.price.toLocaleString("es-MX")}
+        </div>
+      </div>
+    {/each}
+  </div>
+{/if}
 
 <div class="total-price">
   <div class="payment-frequency">
@@ -316,10 +370,121 @@
   .continue-button.disabled {
     cursor: not-allowed;
     color: #00000061;
-    background-color: #0000001F;
+    background-color: #0000001f;
     opacity: 0.5;
     &:hover {
       box-shadow: none;
+    }
+  }
+
+  .selected-modules {
+    font-family: "Sora", sans-serif;
+    background: #fff7f0;
+    border: 1px solid var(--dropdown-border);
+    color: var(--text-secondary);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .selected-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .selected-title {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .selected-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    padding: 2px 8px;
+    font-size: 12px;
+    border-radius: 999px;
+    background-color: var(--accent-color);
+    color: var(--text-white);
+  }
+
+  .selected-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .selected-row:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .module-details {
+    flex: 1;
+  }
+
+  .module-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .module-name {
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .module-plan {
+    background-color: rgba(255, 134, 35, 0.1);
+    color: var(--accent-color);
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-size: 12px;
+    text-transform: capitalize;
+  }
+
+  .module-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .module-addons {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .addon-line {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .module-price {
+    font-weight: 600;
+    text-align: right;
+    min-width: 90px;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 600px) {
+    .selected-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .module-price {
+      text-align: left;
     }
   }
 
