@@ -40,7 +40,7 @@
   {/if} -->
 
   <div class="link-precios">
-    <a href="https://cdn.prod.website-files.com/627983ccef617d453b9485ad/68b5a8352b6bfd4b627dfc0d_Lista%20de%20precios_%202025microsip.pdf" target="_blank">Descargar lista de precios</a>
+    <a href="https://cdn.prod.website-files.com/627983ccef617d453b9485ad/69405ebdf6a4538ccb2d9a28_Microsip_Listas_de_precios_2025_UF.pdf" target="_blank">Descargar lista de precios</a>
     <a href="https://www.microsip.com/promociones" target="_blank">Promociones</a>
   </div>
 
