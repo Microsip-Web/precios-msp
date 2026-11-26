@@ -189,16 +189,6 @@
         disabled={!hasSelections}
         class:disabled={!hasSelections}>Reiniciar</button
       >
-      <button
-        class="continue-button"
-        onclick={() => {
-          document.getElementById("form-container")?.scrollIntoView({
-            behavior: "smooth",
-          });
-        }}
-        disabled={!hasSelections}
-        class:disabled={!hasSelections}>Siguiente</button
-      >
     </div>
   </div>
 </div>
@@ -338,24 +328,6 @@
     transition: background-color 0.3s;
   }
 
-  .continue-button {
-    cursor: pointer;
-    background-color: var(--accent-color);
-    color: var(--text-white);
-    padding: 8px;
-    border-radius: 12px;
-    text-transform: uppercase;
-    font-size: 14px;
-    border: none;
-  }
-
-  .continue-button:hover {
-    box-shadow:
-      0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s;
-  }
-
   /* Add disabled button styles */
   .reset-button.disabled {
     cursor: not-allowed;
@@ -364,16 +336,6 @@
     border-color: var(--border-disabled-button);
     &:hover {
       background-color: transparent;
-    }
-  }
-
-  .continue-button.disabled {
-    cursor: not-allowed;
-    color: #00000061;
-    background-color: #0000001f;
-    opacity: 0.5;
-    &:hover {
-      box-shadow: none;
     }
   }
 
@@ -522,7 +484,7 @@
     }
 
     .action-buttons {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       grid-column: span 2;
     }
   }
